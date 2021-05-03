@@ -11,12 +11,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FormPropsTextFields({label, placeholder}) {
-  const classes = useStyles();
+export default function FormPropsTextFields({label, placeholder, value, onChange}) {
+  // const classes = useStyles();
 
   return (
       <div>
         <TextField
+          value={value}
+          onChange={onChange}
           id="outlined-helperText"
           label={label}
           placeholder={placeholder}

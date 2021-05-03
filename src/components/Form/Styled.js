@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const Main = styled.form`
     width: 100%;
-    background-color: yellow;   
+    border: 1px solid black;
+    padding: 4px;
+    box-sizing: border-box;
 `
 
 export const Title = styled.h1`
@@ -23,6 +25,15 @@ export const ContainerInput = styled.div`
 
     display: flex;
     flex-wrap: wrap;
+
+    div {
+        width: 100%;
+        border-radius: 2px;
+    }
+
+    > div {
+        margin: 6px 0;
+    }
     
     input {
         width: 100%;
@@ -36,6 +47,7 @@ export const ContainerInput = styled.div`
 
 export const ButtonSubmit = styled.button`
     width: 100%;
+    margin-top: 10px;
     padding: 0.75rem 0;
     font-family: Roboto;
     font-size: 1rem;
@@ -47,4 +59,5 @@ export const ButtonSubmit = styled.button`
     text-align: center;
     background-color: #e8222e;
     border: none;
+    border-radius: 2px;
 `

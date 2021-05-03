@@ -1,5 +1,5 @@
 import React from 'react'
-import {Title} from './Styledtyled'
+import {Title} from './Styled'
 
 const CardCart = () => {
     return(<Title>Meu Carrinho</Title>)
