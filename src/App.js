@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.css';
-import Input from './components/Input/Input'
 
-function App() {
+import React from 'react';
+import Router from './Routes/Router';
+import GlobalState from './global/GlobalState';
+
+const App = () => {
   return (
-    <div className="App">
-      <Input label="Nome" placeholder="Nome e sobrenome" />
-    </div>
+    <GlobalState>
+      <Router/>
+    </GlobalState>
   );
 }
 
