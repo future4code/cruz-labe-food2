@@ -1,13 +1,14 @@
-import React from 'react';
-import Login from './screens/Login/LoginPage';
-import RegisterPage from './screens/Register/RegisterPage';
-import RegisterAddressPage from './screens/RegisterAddress/RegisterAddress';
 
-function App() {
+import React from 'react';
+import Router from './Routes/Router';
+import GlobalState from './global/GlobalState';
+
+
+const App = () => {
   return (
-    <div >
-      <RegisterAddressPage/>
-    </div>
+    <GlobalState>
+      <Router/>
+    </GlobalState>
   );
 }
 
