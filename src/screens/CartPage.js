@@ -1,5 +1,5 @@
-import React from 'react'
-import { GlobalStateContext } from '../global/GlobalStateContext'
+import React, {useContext} from 'react'
+import GlobalStateContext from '../global/GlobalStateContext'
 
 const CartPage = () => {
     const { cart, setCart } = useContext(GlobalStateContext)
@@ -8,4 +8,4 @@ const CartPage = () => {
 
 }
 
-export default CartPage
+export default CartPage;
