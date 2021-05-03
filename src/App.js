@@ -6,9 +6,11 @@ import GlobalState from './global/GlobalState';
 
 const App = () => {
   return (
-    <GlobalState>
-      <Router/>
-    </GlobalState>
+    <div className="App">
+      <GlobalState>
+        <Router/>
+      </GlobalState>
+    </div>
   );
 }
 
