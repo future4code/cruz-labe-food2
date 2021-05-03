@@ -1,8 +1,10 @@
-import { Router } from './Routes/Router';
-import './App.css';
+
+import React from 'react';
+import Router from './Routes/Router';
 import GlobalState from './global/GlobalState';
 
-function App() {
+
+const App = () => {
   return (
     <GlobalState>
       <Router/>
