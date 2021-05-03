@@ -1,17 +1,15 @@
+
 import React from 'react';
 import './App.css';
 
-import Form from './components/Form/Form'
+import Router from './Routes/Router';
+import GlobalState from './global/GlobalState';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Form labelButton='Criar' >
-        <input />
-        <input />
-        <input />
-      </Form>
-    </div>
+    <GlobalState>
+      <Router/>
+    </GlobalState>
   );
 }
 
