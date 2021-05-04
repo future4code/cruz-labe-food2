@@ -1,14 +1,14 @@
 import React from 'react'
 import { Main, Title, ContainerInput, ButtonSubmit } from './Styled'
 
-export default function Form({children, labelButton}) {
+export default function Form({children, labelButton, title, onSubmit}) {
     return (
-        <Main>
-            <Title>Entra</Title>
+        <Main onSubmit={onSubmit}>
+            <Title>{title}</Title>
             <ContainerInput>
                 {children}
             </ContainerInput>
-            <ButtonSubmit>
+            <ButtonSubmit type="submit">
                 {labelButton}
             </ButtonSubmit>
         </Main>

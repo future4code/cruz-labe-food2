@@ -1,102 +1,78 @@
 import React, {useState} from 'react';
 import {useForm} from '../../hooks/useForm';
-import {Input, Label, IconPassword} from '../../GlobalStyle';
-import { ReactComponent as Senha } from '../../assets/senha.svg';
-import { ReactComponent as Senha2 } from '../../assets/senha-2.svg';
-
+import Form from '../../components/Form/Form'
+import Input from '../../components/Input/Input'
+import {signup} from '../../services/API'
+import {useHistory} from 'react-router-dom'
 const FormRegister = () =>  {
   const [form, onChange, resetForm] = useForm({ name:'',  email: '', cpf:'', password: '', confirmPassword: '',});
-  const [showPassword, setShowPassword] = useState([false, false])
-  
+
+  const history = useHistory()
   const handleClick = (event) => {
     event.preventDefault();
+    const body = {...form}
+    delete body.confirmPassword;
+    console.log(body)
+    signup(body, history)
   };
 
   return (
     <div>
-      <form onSubmit={handleClick}>
-        <Label>
-          Nome
-          <Input 
-            type='text'
-            placeholder='Nome e Sobrenome'
-            name='nome'
-            onChange='onChange'
-            required
-
-          >
-          </Input>
-        </Label>
-
-        <Label>
-        Email
-          <Input 
-            type='email'
-            placeholder='email@email.com'
-            name='email'
-            onChange='onChange'
-            required
-
-          >
-          </Input>
-        </Label>
-
-        <Label>
-          CPF
-          <Input
-          type='number'
-          placeholder='000.000.000-00'
-          name='cpf'
-          onChange='onChange'
-          min='14'
-          required
-          />
-        </Label>
-
-        <Label>
-          Senha
-          <Input
-          type={showPassword[0] ? 'text' : 'password'}
-          placeholder='Mínimo 6 caracteres'
-          name='password'
-          onChange='onChange'
-          required
-          
-          >
-          
-          </Input>
-          <IconPassword>
-          {showPassword[0] ? 
-          <Senha2 onClick={() => setShowPassword([!showPassword[0], showPassword[1]])}/> 
-          : 
-          <Senha onClick={() => setShowPassword([!showPassword[0], showPassword[1]])}/>}
-
-          </IconPassword>
-         
-        </Label>
-
-        <Label>
-          Confirmar 
-          <Input
-          type={showPassword[1] ? 'text' : 'password'}
-          placeholder='Confirme a senha anterior'
-          name='password'
-          onChange='onChange'
-          required
-          
-          >
-          
-          </Input>
-          <IconPassword>
-          {showPassword[1] ? 
-          <Senha2 onClick={() => setShowPassword([showPassword[0], !showPassword[1]])}/> 
-          : 
-          <Senha onClick={() => setShowPassword([showPassword[0], !showPassword[1]])}/>}
-          </IconPassword>
-         
-        </Label>
-        
-      </form>
+      <Form 
+      onSubmit={handleClick} 
+      labelButton="Criar" 
+      title="Cadastrar">
+      <Input
+      label="Nome"
+      placeholder='Nome e Sobrenome'
+      value={form.name}
+      onChange={onChange}
+      type="text"
+      name="name"
+      error=""
+      required={true}
+      />
+        <Input
+      label="Email"
+      placeholder='email@email.com'
+      value={form.email}
+      onChange={onChange}
+      type="email"
+      name="email"
+      error=""
+      required={true}
+      />
+         <Input
+      label="CPF"
+      placeholder='000.000.000-00'
+      value={form.cpf}
+      onChange={onChange}
+      type="text"
+      name="cpf"
+      error=""
+      required={true}
+      />
+        <Input
+      label="Senha"
+      placeholder='Mínimo 6 caracteres'
+      value={form.password}
+      onChange={onChange}
+      type="password"
+      name="password"
+      error=""
+      required={true}
+      />
+    <Input
+      label="Confirmar"
+      placeholder='Confirme a senha anterior'
+      value={form.confirmPassword}
+      onChange={onChange}
+      type="password"
+      name="confirmPassword"
+      error=""
+      required={true}
+      />
+      </Form>
       
     </div>
   )

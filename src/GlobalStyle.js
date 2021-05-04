@@ -34,7 +34,6 @@ export const FormControl = styled.div`
   border: solid 1px #b8b8b8;
   position: relative;
   height: 3.5rem;
-
  
 ` 
 export const DivInput = styled.div`
@@ -42,7 +41,6 @@ export const DivInput = styled.div`
   align-items: center;
   position: relative; 
   padding: 0 0rem 0 1rem;
-  justify-content: space-between;  
   svg{
     width: 1.5rem;
     height: 1.5rem;
