@@ -1,7 +1,8 @@
 import React from 'react';
 import FormRegisterAddress from './FormRegisterAddress';
-
-const  RegisterAddressPage = () =>  {
+import useProtectedPage from '../../hooks/useProtectedPage'
+const RegisterAddressPage = () =>  {
+  useProtectedPage()
   return (
     <> 
       <FormRegisterAddress/>

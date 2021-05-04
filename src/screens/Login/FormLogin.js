@@ -1,71 +1,42 @@
 import React, {useState} from 'react';
 import {useForm} from '../../hooks/useForm';
-import {Input, Label, IconPassword, FormControl, DivInput, MsgError, DivFormControl, Form} from '../../GlobalStyle';
-import { ReactComponent as Senha } from '../../assets/senha.svg';
-import { ReactComponent as Senha2 } from '../../assets/senha-2.svg';
-import InputTeste from '../../components/Input/Input'
+import Input from '../../components/Input/Input'
+import Form from '../../components/Form/Form'
+import {useHistory} from 'react-router-dom'
+import {login} from '../../services/API'
 const FormLogin = () =>  {
   const [form, onChange, resetForm] = useForm({email: '', password: ''});
-  const [showPassword, setShowPassword] = useState(false)
 
+  const history = useHistory()
   const handleClick = (event) => {
     event.preventDefault();
+    console.log(form)
+    login(form, history)
   };
 
   return (
     <div>
-      <Form onSubmit={handleClick}>
-      <DivFormControl>
-            <FormControl className="">
-          <DivInput>
-          <Input 
-            type='email'
-            placeholder='email@email.com'
-            name='email'
-            onChange='onChange'
-            required
-            id="email"
-
-         />
-          </DivInput> 
-          <Label for="email">
-            Email
-        </Label>
-       
-        </FormControl>
-
-        </DivFormControl>
-<DivFormControl>
-        <FormControl>
-          <DivInput>
-            <Input
-          type={showPassword ? 'text' : 'password'}
-          placeholder='Mínimo 6 caracteres'
-          name='password'
-          onChange='onChange'
-          required
-          id="password"
-          />
-            <IconPassword>
-          {showPassword ? 
-          <Senha2 onClick={() => setShowPassword(!showPassword)}/>
-           : 
-          <Senha onClick={() => setShowPassword(!showPassword)}/>}
-          </IconPassword>
-        </DivInput>
-        <Label for="password">
-          Senha
-        </Label>
-        </FormControl>
-</DivFormControl>
-      <InputTeste
+     <Form 
+      onSubmit={handleClick} 
+      labelButton="Entrar" 
+      title="Entrar">
+      <Input
+      label="Email"
+      placeholder="email@email.com"
+      value={form.email}
+      onChange={onChange}
+      type="email"
+      name="email"
+      error=""
+      />
+      <Input
       label="Senha"
       placeholder="Mínimo 6 caracteres"
       value={form.password}
       onChange={onChange}
       type="password"
       name="password"
-      error="asdas"
+      error=""
       />
       </Form>
       

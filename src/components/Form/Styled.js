@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Main = styled.form`
     width: 100%;
     border: 1px solid black;
-    padding: 4px;
+    padding: 1rem;
     box-sizing: border-box;
 `
 
@@ -21,33 +21,13 @@ export const Title = styled.h1`
 `
 
 export const ContainerInput = styled.div`
-    width: 100%;
-
     display: flex;
-    flex-wrap: wrap;
-
-    div {
-        width: 100%;
-        border-radius: 2px;
-    }
-
-    > div {
-        margin: 6px 0;
-    }
-    
-    input {
-        width: 100%;
-        /* height: 3.5rem;
-        margin: 0.5rem 0 0;
-        padding: 1.188rem 3rem 1.188rem 1rem;
-        border-radius: 2px;
-        border: solid 1px #b8b8b8; */
-    }
+    flex-direction: column;
 `
-
 export const ButtonSubmit = styled.button`
+    cursor: pointer;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 0.5rem;
     padding: 0.75rem 0;
     font-family: Roboto;
     font-size: 1rem;

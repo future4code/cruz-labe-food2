@@ -3,7 +3,7 @@ import {Input, Label, IconPassword, FormControl, DivInput, MsgError, DivFormCont
 import { ReactComponent as Senha } from '../../assets/senha.svg';
 import { ReactComponent as Senha2 } from '../../assets/senha-2.svg';
 
-export default function FormPropsTextFields({label, placeholder, value, onChange, type, name, error}) {
+export default function FormPropsTextFields({label, placeholder, value, onChange, type, name, error, required}) {
  
   const [showPassword, setShowPassword] = useState(false)
 
@@ -20,6 +20,7 @@ export default function FormPropsTextFields({label, placeholder, value, onChange
       required
       id={name}
       value={value}
+      required={required}
    />
 
 {type === "password" && <IconPassword>
@@ -30,7 +31,7 @@ export default function FormPropsTextFields({label, placeholder, value, onChange
           </IconPassword>}
     </DivInput> 
     <Label for={name}>
-      {label}
+      {label}{required && "*"}
   </Label>
   </FormControl>
   <MsgError>
