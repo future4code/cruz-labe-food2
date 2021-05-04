@@ -7,13 +7,15 @@ const useProtectedPage = () => {
 
     useLayoutEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
+        console.log("d", user)
         if (!user) {
             goToLogin(history)
         }
-        else if(user.user.hasAddress){
+        else if(!user.user.hasAddress){
             goToSignUpAddress(history)
         }
     }, [history])
+   
 }
 
 export default useProtectedPage
