@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
+import { Container } from './Styled';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +29,7 @@ export default function CustomizedInputBase() {
   const classes = useStyles();
 
   return (
-    <Paper component="form" className={classes.root}>
+    <Container>
       <IconButton className={classes.iconButton} aria-label="menu">
         <SearchIcon />
       </IconButton>
@@ -37,6 +37,6 @@ export default function CustomizedInputBase() {
         className={classes.input}
         placeholder="Restaurante"
       />
-    </Paper>
+    </Container>
   );
 }

@@ -1,16 +1,16 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { BASE_URL } from "../constants/urls"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { BASE_URL } from "../constants/urls";
 
 export const useRequestData = (path, initialState) => {
-  const [data, setData] = useState(initialState)
-  const token = localStorage.getItem("token")
+  const [data, setData] = useState(initialState);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const getData = () => {
     axios
-      .get(`${BASE_URL}${path}`, {
+      .get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants`, {
         headers: {
-          auth: token,
+          auth: user.token,
         },
       })
       .then((response) => {
@@ -20,8 +20,8 @@ export const useRequestData = (path, initialState) => {
   }
 
   useEffect(() => {
-    getData()
-  }, [path, getData])
+   getData()
+  }, []);
 
-  return [data, getData]
-}
+  return [data, getData];
+};
