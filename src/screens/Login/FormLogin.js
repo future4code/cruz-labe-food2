@@ -20,7 +20,7 @@ const FormLogin = () => {
       currentError.email = "E-mail não foi inserido";
     }
     if (form.password === "") {
-      currentError.password = "Senha não foi informada";
+      currentError.password = "Senha não foi inserida";
     } else if (form.password.length < 6) {
       currentError.password = "Senha precisa ter mais que 6 caracteres";
     }

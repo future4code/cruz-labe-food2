@@ -31,13 +31,13 @@ const FormRegister = () => {
     }
 
     if (form.cpf === "") {
-      currentError.cpf = "CPF não foi infomado";
+      currentError.cpf = "CPF não foi inserido";
     } else if (!validateCPF(form.cpf)) {
       currentError.cpf = "CPF informado é inválido";
     }
 
     if (form.password === "") {
-      currentError.password = "Senha não foi informada";
+      currentError.password = "Senha não foi inserida";
     } else if (form.password.length <= 6) {
       currentError.password = "Senha precisa ter mais que 6 caracteres";
     } else {
