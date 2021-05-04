@@ -8,20 +8,21 @@ import CardRestaurant from '../components/CardRestaurant/CardRestaurant'
 
 const HomePage = () => {
   // useProtectedPage()
-  const [data, updateData] = useRequestData('restaurants')
+  const [data, updateData] = useRequestData('restaurants', {})
   const [restaurants, setRestaurants] = useState([])
 
   useEffect(() => {
-    setRestaurants(data.restaurants)
+      setRestaurants(data.restaurants)
   }, [data])
-
-  console.log(restaurants)
+  
+  console.log('homepage', restaurants);
   return (
     <>
       <MenuHeader currentPageLabel='Ifuture'/>
       <MainContainer>
         <InputSearch />
-        <CardRestaurant restaurant={restaurants[0]}/>
+        {restaurants && restaurants.length > 0 && <CardRestaurant restaurant={restaurants[0]}/>}
+        
         HomePage
       </MainContainer>
     </>
