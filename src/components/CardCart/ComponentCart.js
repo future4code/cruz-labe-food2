@@ -3,7 +3,7 @@ import FooterMenu from '../FooterMenu/FooterMenu'
 import MenuHeader from '../MenuHeader/MenuHeader'
 import {Rectangle, Carrinho, DivBotaoConfirma, FormaPagamento, DivPrecos, DivDetalhes,BotaoRemover, Endereco_entrega, Rua_cliente, Restaurante, Rua_restaurante, Tempo, Item_card, Card, ImageDiv, NomeDoItem, DetalhePedido, Preco, Remover, Quantidade, Numero, DivFuncionalidades, Frete, PrecoSubtotal, Subtotal, OpcaoPagamento, RadiobuttonUnchecked, RadiobuttonChecked, Fill, BotaoConfirma} from './Styled'
 
-const CardCart = (props) => {
+const ComponentCart = () => {
     return(
         <Carrinho>
             <MenuHeader currentPageLabel='Meu Carrinho'/>
@@ -79,7 +79,7 @@ const CardCart = (props) => {
                         Cartão
                     </OpcaoPagamento>
                     <DivBotaoConfirma>
-                        <BotaoConfirma onClick={props.onClick}>
+                        <BotaoConfirma>
                             Confirma
                         </BotaoConfirma>
                     </DivBotaoConfirma>
@@ -89,4 +89,4 @@ const CardCart = (props) => {
         )
 }
 
-export default CardCart
+export default ComponentCart
