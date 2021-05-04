@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {useForm} from '../../hooks/useForm';
-import {Input, Label, IconPassword} from '../../GlobalStyle';
+import {Input, Label, IconPassword, FormControl, DivInput, MsgError, DivFormControl, Form} from '../../GlobalStyle';
 import { ReactComponent as Senha } from '../../assets/senha.svg';
 import { ReactComponent as Senha2 } from '../../assets/senha-2.svg';
-
+import InputTeste from '../../components/Input/Input'
 const FormLogin = () =>  {
   const [form, onChange, resetForm] = useForm({email: '', password: ''});
   const [showPassword, setShowPassword] = useState(false)
@@ -14,43 +14,60 @@ const FormLogin = () =>  {
 
   return (
     <div>
-      <form onSubmit={handleClick}>
-        <Label>
-          Email
+      <Form onSubmit={handleClick}>
+      <DivFormControl>
+            <FormControl className="">
+          <DivInput>
           <Input 
             type='email'
             placeholder='email@email.com'
             name='email'
             onChange='onChange'
             required
+            id="email"
 
-          >
-          </Input>
+         />
+          </DivInput> 
+          <Label for="email">
+            Email
         </Label>
+       
+        </FormControl>
 
-        <Label>
-          Senha
-          <Input
+        </DivFormControl>
+<DivFormControl>
+        <FormControl>
+          <DivInput>
+            <Input
           type={showPassword ? 'text' : 'password'}
           placeholder='Mínimo 6 caracteres'
           name='password'
           onChange='onChange'
           required
-          
-          >
-          
-          </Input>
-          <IconPassword>
+          id="password"
+          />
+            <IconPassword>
           {showPassword ? 
           <Senha2 onClick={() => setShowPassword(!showPassword)}/>
            : 
           <Senha onClick={() => setShowPassword(!showPassword)}/>}
           </IconPassword>
-         
+        </DivInput>
+        <Label for="password">
+          Senha
         </Label>
-       
-      
-      </form>
+        </FormControl>
+</DivFormControl>
+      <InputTeste
+      label="Senha"
+      placeholder="Mínimo 6 caracteres"
+      value={form.password}
+      onChange={onChange}
+      type="password"
+      name="password"
+      error="asdas"
+      />
+      </Form>
       
     </div>
   )

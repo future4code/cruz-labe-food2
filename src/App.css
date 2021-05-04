@@ -1,4 +1,17 @@
 .App {
-  width: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.App *{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    list-style: none;
+}
+.Conteiner{
+  max-width: 100%;
+  width: 500px;
   min-height: 100vh;
 }
