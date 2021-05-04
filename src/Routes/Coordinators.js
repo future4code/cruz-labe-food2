@@ -13,7 +13,6 @@ export const goToSignUpAddress = (history) =>{
 export const goToRestaurant = (history, id) =>{
     history.push(`/restaurant/${id}`)
 }
-
 export const goToCart = (history) =>{
     history.push('/cart')
 }
