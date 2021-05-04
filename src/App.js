@@ -1,14 +1,17 @@
 import React from 'react';
 import './App.css';
-
 import Router from './Routes/Router';
 import GlobalState from './global/GlobalState';
 
 const App = () => {
   return (
-    <GlobalState>
-      <Router/>
-    </GlobalState>
+    <div className="App">
+      <div className="Conteiner">
+      <GlobalState>
+        <Router/>
+      </GlobalState>
+      </div>
+    </div>
   );
 }
 

@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const Main = styled.form`
     width: 100%;
-    background-color: yellow;   
+    border: 1px solid black;
+    padding: 1rem;
+    box-sizing: border-box;
 `
 
 export const Title = styled.h1`
@@ -19,23 +21,13 @@ export const Title = styled.h1`
 `
 
 export const ContainerInput = styled.div`
-    width: 100%;
-
     display: flex;
-    flex-wrap: wrap;
-    
-    input {
-        width: 100%;
-        /* height: 3.5rem;
-        margin: 0.5rem 0 0;
-        padding: 1.188rem 3rem 1.188rem 1rem;
-        border-radius: 2px;
-        border: solid 1px #b8b8b8; */
-    }
+    flex-direction: column;
 `
-
 export const ButtonSubmit = styled.button`
+    cursor: pointer;
     width: 100%;
+    margin-top: 0.5rem;
     padding: 0.75rem 0;
     font-family: Roboto;
     font-size: 1rem;
@@ -47,4 +39,5 @@ export const ButtonSubmit = styled.button`
     text-align: center;
     background-color: #e8222e;
     border: none;
+    border-radius: 2px;
 `

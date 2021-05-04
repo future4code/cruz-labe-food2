@@ -1,28 +1,42 @@
-import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import {Input, Label, IconPassword, FormControl, DivInput, MsgError, DivFormControl} from '../../GlobalStyle';
+import { ReactComponent as Senha } from '../../assets/senha.svg';
+import { ReactComponent as Senha2 } from '../../assets/senha-2.svg';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
-  },
-}));
-
-export default function FormPropsTextFields({label, placeholder}) {
-  const classes = useStyles();
+export default function FormPropsTextFields({label, placeholder, value, onChange, type, name, error, required}) {
+ 
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
-      <div>
-        <TextField
-          id="outlined-helperText"
-          label={label}
-          placeholder={placeholder}
-          variant="outlined"
-          required
-        />
-      </div>
+   
+      <DivFormControl>
+      <FormControl className={error? "Error" : ""}>
+    <DivInput>
+    <Input 
+      type={showPassword? 'text' : type}
+      placeholder={placeholder}
+      name={name}
+      onChange={onChange}
+      required
+      id={name}
+      value={value}
+      required={required}
+   />
+
+{type === "password" && <IconPassword>
+          {showPassword ? 
+          <Senha2 onClick={() => setShowPassword(!showPassword)}/>
+           : 
+          <Senha onClick={() => setShowPassword(!showPassword)}/>}
+          </IconPassword>}
+    </DivInput> 
+    <Label for={name}>
+      {label}{required && "*"}
+  </Label>
+  </FormControl>
+  <MsgError>
+      {error}
+  </MsgError>
+  </DivFormControl>
     )
 }
