@@ -34,6 +34,12 @@ export const ProfileContainer = styled.div`
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background-color: #ffffff;
+  svg{
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 1rem 1rem 0.125rem 20rem;
+  object-fit: contain;
+  }
 `
 export const PersonalData = styled.div`
   p{
@@ -118,4 +124,10 @@ export const Order = styled.div`
     letter-spacing: -0.39px;
     text-align: center;
   }
+`
+export const PersonalText = styled.div`
+  
+`
+export const AddressText = styled.div`
+  
 `
