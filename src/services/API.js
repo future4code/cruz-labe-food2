@@ -24,7 +24,8 @@ export const login = (body, history) => {
             goToHome(history)
         }
     }).catch((err)=>{
-        console.log(err)
+        // console.log(err)
+        alert("E-mail e/ou senha incorreta")
     })
 }
 

@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Main = styled.form`
     width: 100%;
-    border: 1px solid black;
     padding: 1rem;
     box-sizing: border-box;
 `

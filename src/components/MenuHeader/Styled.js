@@ -22,7 +22,7 @@ export const ContainerIcon = styled.div`
     position: absolute;
     left: 1rem;
     top: 0.625rem;
-
+    cursor: pointer;
     svg {
         width: 1.44rem;
     }
