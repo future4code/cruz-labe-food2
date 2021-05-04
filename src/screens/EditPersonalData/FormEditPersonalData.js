@@ -6,7 +6,7 @@ import { signup } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
 
-const FormRegister = () => {
+const FormEditPersonalData = () => {
   const [form, onChange, resetForm] = useForm({
     name: "",
     email: "",
@@ -35,16 +35,6 @@ const FormRegister = () => {
     } else if (!validateCPF(form.cpf)) {
       currentError.cpf = "CPF informado é inválido";
     }
-
-    if (form.password === "") {
-      currentError.password = "Senha não foi informada";
-    } else if (form.password.length <= 6) {
-      currentError.password = "Senha precisa ter mais que 6 caracteres";
-    } else {
-      if (form.password != form.confirmPassword) {
-        currentError.confirmPassword = "As senhas precisam ser iguais";
-      }
-    }
     setError({ ...currentError });
 
     if (Object.keys(currentError).length === 0) {
@@ -56,7 +46,7 @@ const FormRegister = () => {
 
   return (
     <div>
-      <Form onSubmit={handleClick} labelButton="Criar" title="Cadastrar">
+      <Form onSubmit={handleClick} labelButton="Salvar" >
         <Input
           label="Nome"
           placeholder="Nome e Sobrenome"
@@ -87,29 +77,9 @@ const FormRegister = () => {
           error={error["cpf"]}
           required={true}
         />
-        <Input
-          label="Senha"
-          placeholder="Mínimo 6 caracteres"
-          value={form.password}
-          onChange={onChange}
-          type="password"
-          name="password"
-          error={error["password"]}
-          required={true}
-        />
-        <Input
-          label="Confirmar"
-          placeholder="Confirme a senha anterior"
-          value={form.confirmPassword}
-          onChange={onChange}
-          type="password"
-          name="confirmPassword"
-          error={error["confirmPassword"]}
-          required={true}
-        />
       </Form>
     </div>
   );
 };
 
-export default FormRegister;
+export default FormEditPersonalData;
