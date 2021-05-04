@@ -8,7 +8,7 @@ export const useRequestData = (path, initialState) => {
 
   const getData = () => {
     axios
-      .get(`https://us-central1-missao-newton.cloudfunctions.net/fourFoodA/restaurants`, {
+      .get(`${BASE_URL}${path}`, {
         headers: {
           auth: user.token,
         },
