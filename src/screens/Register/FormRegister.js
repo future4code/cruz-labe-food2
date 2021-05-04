@@ -4,16 +4,52 @@ import Form from '../../components/Form/Form'
 import Input from '../../components/Input/Input'
 import {signup} from '../../services/API'
 import {useHistory} from 'react-router-dom'
+import validateCPF from '../../constants/validateCPF'
+
 const FormRegister = () =>  {
+
   const [form, onChange, resetForm] = useForm({ name:'',  email: '', cpf:'', password: '', confirmPassword: '',});
+  const [error, setError] = useState({})
 
   const history = useHistory()
   const handleClick = (event) => {
     event.preventDefault();
+    setError({})
+    const currentError = {}
+    
+    if(form.name === ""){
+      currentError.name = "Nome não foi inserido"
+    }
+    
+    if(form.email === ""){
+      currentError.email = "E-mail não foi inserido"
+    }
+
+    if(form.cpf === ""){
+      currentError.cpf = "CPF não foi infomado"
+    }
+    else if(!validateCPF(form.cpf)){
+      currentError.cpf = "CPF informado é inválido"
+    }
+
+    if(form.password === ""){
+      currentError.password = "Senha não foi informada";
+    }
+    else if(form.password.length <= 6){
+      currentError.password = "Senha precisa ter mais que 6 caracteres";
+    }
+    else{
+      if(form.password != form.confirmPassword){
+        currentError.confirmPassword = "As senhas precisam ser iguais";
+      }
+    }
+    setError({...currentError})
+    
+    if(Object.keys(currentError).length === 0){
     const body = {...form}
     delete body.confirmPassword;
-    console.log(body)
     signup(body, history)
+  }
   };
 
   return (
@@ -29,7 +65,7 @@ const FormRegister = () =>  {
       onChange={onChange}
       type="text"
       name="name"
-      error=""
+      error={error['name']}
       required={true}
       />
         <Input
@@ -39,7 +75,7 @@ const FormRegister = () =>  {
       onChange={onChange}
       type="email"
       name="email"
-      error=""
+      error={error['email']}
       required={true}
       />
          <Input
@@ -49,7 +85,7 @@ const FormRegister = () =>  {
       onChange={onChange}
       type="text"
       name="cpf"
-      error=""
+      error={error['cpf']}
       required={true}
       />
         <Input
@@ -59,7 +95,7 @@ const FormRegister = () =>  {
       onChange={onChange}
       type="password"
       name="password"
-      error=""
+      error={error['password']}
       required={true}
       />
     <Input
@@ -69,7 +105,7 @@ const FormRegister = () =>  {
       onChange={onChange}
       type="password"
       name="confirmPassword"
-      error=""
+      error={error['confirmPassword']}
       required={true}
       />
       </Form>

@@ -6,13 +6,35 @@ import Form from '../../components/Form/Form'
 import {useHistory} from 'react-router-dom'
 import {addAdress} from '../../services/API'
 const FormRegisterAddress = () =>  {
-  const [form, onChange, resetForm] = useForm({ street:'',  number: '', neighbourhood: '', city: '', state: '', complement: ','});
+  const [form, onChange, resetForm] = useForm({ street:'',  number: '', neighbourhood: '', city: '', state: '', complement: ''});
   
+  const [error, setError] = useState({})
   const history = useHistory()
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(form)
-    addAdress(form, history)
+    const currentError = {}
+    if(form.street === ""){
+      currentError.street = "Logradouro não foi inserido"
+    }
+    if(form.number === ""){
+      currentError.number = "Número não foi inserido"
+    }
+    else if (form.number < 0){
+      currentError.number = "Número não pode ser negativo"
+    }
+    if(form.neighbourhood === ""){
+      currentError.neighbourhood = "Bairro não foi inserido"
+    }
+    if(form.city === ""){
+      currentError.city = "Cidade não foi inserida"
+    }
+    if(form.state === ""){
+      currentError.state = "Estado não foi inserido"
+    } 
+    setError({...currentError})
+    if(Object.keys(currentError).length === 0){
+         addAdress(form, history)
+    }
   };
 
   return (
@@ -29,7 +51,7 @@ const FormRegisterAddress = () =>  {
       onChange={onChange}
       type="text"
       name="street"
-      error=""
+      error={error['street']}
       required={true}
       />
        <Input
@@ -39,7 +61,7 @@ const FormRegisterAddress = () =>  {
       onChange={onChange}
       type="number"
       name="number"
-      error=""
+      error={error['number']}
       required={true}
       />
         <Input
@@ -49,7 +71,6 @@ const FormRegisterAddress = () =>  {
       onChange={onChange}
       type="text"
       name="complement"
-      error=""
       required={false}
       />
          <Input
@@ -59,7 +80,7 @@ const FormRegisterAddress = () =>  {
       onChange={onChange}
       type="text"
       name="neighbourhood"
-      error=""
+      error={error['neighbourhood']}
       required={true}
       />
              <Input
@@ -69,7 +90,7 @@ const FormRegisterAddress = () =>  {
       onChange={onChange}
       type="text"
       name="city"
-      error=""
+      error={error['city']}
       required={true}
       />
 
@@ -80,7 +101,7 @@ const FormRegisterAddress = () =>  {
       onChange={onChange}
       type="text"
       name="state"
-      error=""
+      error={error['state']}
       required={true}
       />       
         

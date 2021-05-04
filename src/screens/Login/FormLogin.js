@@ -6,12 +6,29 @@ import {useHistory} from 'react-router-dom'
 import {login} from '../../services/API'
 const FormLogin = () =>  {
   const [form, onChange, resetForm] = useForm({email: '', password: ''});
-
+  const [error, setError] = useState({})
+ 
   const history = useHistory()
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(form)
-    login(form, history)
+    // console.log(form)
+    setError({})
+    const currentError = {}
+     
+    if(form.email === ""){
+      currentError.email = "E-mail não foi inserido"
+    }
+    if(form.password === ""){
+      currentError.password = "Senha não foi informada";
+    }
+    else if(form.password.length < 6){
+      currentError.password = "Senha precisa ter mais que 6 caracteres";
+    }
+    setError({...currentError})
+    
+    if(Object.keys(currentError).length === 0){
+      login(form, history)
+    }
   };
 
   return (
@@ -27,7 +44,8 @@ const FormLogin = () =>  {
       onChange={onChange}
       type="email"
       name="email"
-      error=""
+      required={true}
+      error={error['email']}
       />
       <Input
       label="Senha"
@@ -36,7 +54,8 @@ const FormLogin = () =>  {
       onChange={onChange}
       type="password"
       name="password"
-      error=""
+      required={true}
+      error={error['password']}
       />
       </Form>
       

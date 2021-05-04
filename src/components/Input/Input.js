@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Input, Label, IconPassword, FormControl, DivInput, MsgError, DivFormControl} from '../../GlobalStyle';
+import {Input, Label, IconPassword, FormControl, DivInput, MsgError, DivFormControl} from './Styled';
 import { ReactComponent as Senha } from '../../assets/senha.svg';
 import { ReactComponent as Senha2 } from '../../assets/senha-2.svg';
 
@@ -17,10 +17,8 @@ export default function FormPropsTextFields({label, placeholder, value, onChange
       placeholder={placeholder}
       name={name}
       onChange={onChange}
-      required
       id={name}
       value={value}
-      required={required}
    />
 
 {type === "password" && <IconPassword>
