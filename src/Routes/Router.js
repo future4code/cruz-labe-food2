@@ -6,8 +6,8 @@ import RegisterAddress from '../screens/RegisterAddress/RegisterAddress';
 import HomePage from '../screens/HomePage';
 import ProfilePage from '../screens/ProfilePage';
 import CartPage from '../screens/CartPage';
-import EditPersonalData from '../screens/EditPersonalData';
-import EditAddressPage from '../screens/EditAddressPage';
+import EditPersonalData from '../screens/EditPersonalData/EditPersonalData';
+import EditAddressPage from '../screens/EditAddressPage/EditAddressPage';
 import ErrorPage from '../screens/ErrorPage';
 import RestaurantPage from '../screens/RestaurantPage';
 

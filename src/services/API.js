@@ -1,6 +1,6 @@
 import {BASE_URL} from '../constants/urls';
 import axios from 'axios'
-import {goToSignUpAddress, goToHome} from '../Routes/Coordinators' 
+import {goToSignUpAddress, goToHome, goToProfile} from '../Routes/Coordinators' 
 export const signup = (body, history) => {
     axios.post(`${BASE_URL}signup`, body)
     .then((res)=> {
@@ -40,6 +40,22 @@ export const addAdress = (body, history) => {
         console.log(res)
         localStorage.setItem('user', JSON.stringify(res.data))
         goToHome(history)
+    }).catch((err)=>{
+        console.log(err)
+    })
+}
+
+export const updateProfile = (body, history) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    axios.put(`${BASE_URL}address`, body, {
+        headers: {
+            auth: user.token
+        }
+    })
+    .then((res)=> {
+        console.log(res)
+        localStorage.setItem('user', JSON.stringify(res.data))
+        goToProfile(history)
     }).catch((err)=>{
         console.log(err)
     })

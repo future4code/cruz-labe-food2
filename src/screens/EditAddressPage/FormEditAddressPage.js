@@ -5,7 +5,7 @@ import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { addAdress } from "../../services/API";
 
-const FormRegisterAddress = () => {
+const FormEditAddressPage = () => {
   const [form, onChange, resetForm] = useForm({
     street: "",
     number: "",
@@ -45,7 +45,7 @@ const FormRegisterAddress = () => {
 
   return (
     <div>
-      <Form onSubmit={handleClick} labelButton="Salvar" title="Meu endereço">
+      <Form onSubmit={handleClick} labelButton="Salvar" >
         <Input
           label="Logradouro"
           placeholder="Rua / Av"
@@ -111,4 +111,4 @@ const FormRegisterAddress = () => {
   );
 };
 
-export default FormRegisterAddress;
+export default FormEditAddressPage;
