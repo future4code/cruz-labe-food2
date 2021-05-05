@@ -51,7 +51,7 @@ const ProfilePage = () => {
          { orders.length > 0 ? orders.map((order) => {
          return <FoodHistory title="título" date="data" subtotal="subtotal" /> 
          })
-         :  
+         :
          <p>Você não realizou nenhum pedido</p>} 
          
         </Order>

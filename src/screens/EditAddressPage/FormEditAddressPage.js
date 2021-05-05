@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { updateAddress } from "../../services/API";
-
+import {useRequestData} from '../../hooks/useRequestData'
 const FormEditAddressPage = () => {
   const [form, onChange, resetForm] = useForm({
     street: "",
@@ -15,7 +15,14 @@ const FormEditAddressPage = () => {
     complement: "",
   });
   const [error, setError] = useState({});
+  const [address, setAddress] = useRequestData('profile/address', {})
   const history = useHistory();
+
+  useEffect(()=> {
+    if(Object.keys(address).length > 0){
+      resetForm(address.address)
+    }
+  }, [address])
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -27,6 +34,8 @@ const FormEditAddressPage = () => {
       currentError.number = "Número não foi inserido";
     } else if (form.number < 0) {
       currentError.number = "Número não pode ser negativo";
+    }else if(!Number.isInteger(Number(form.number))){
+      currentError.number = "Número não pode ser decimal";
     }
     if (form.neighbourhood === "") {
       currentError.neighbourhood = "Bairro não foi inserido";

@@ -27,6 +27,8 @@ const FormRegisterAddress = () => {
       currentError.number = "Número não foi inserido";
     } else if (form.number < 0) {
       currentError.number = "Número não pode ser negativo";
+    }else if(!Number.isInteger(Number(form.number))){
+      currentError.number = "Número não pode ser decimal";
     }
     if (form.neighbourhood === "") {
       currentError.neighbourhood = "Bairro não foi inserido";

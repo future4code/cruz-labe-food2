@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "../../hooks/useForm";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
 import { updateProfile } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
-
+import validateEmail from '../../constants/validateEmail'
+import {useRequestData} from '../../hooks/useRequestData'
 const FormEditPersonalData = () => {
   const [form, onChange, resetForm] = useForm({
     name: "",
@@ -13,6 +14,16 @@ const FormEditPersonalData = () => {
     cpf: ""
   });
   const [error, setError] = useState({});
+  const [profile, setProfile] = useRequestData('profile', {})
+   useEffect(()=> {
+     if(Object.keys(profile).length > 0){
+      const profileUpdate = { ...profile.user };
+      delete profileUpdate.id;
+      delete profileUpdate.hasAddress;
+      delete profileUpdate.address;
+             resetForm(profileUpdate)
+     }
+   }, [profile])
 
   const history = useHistory();
   const handleClick = (event) => {
@@ -26,6 +37,8 @@ const FormEditPersonalData = () => {
 
     if (form.email === "") {
       currentError.email = "E-mail não foi inserido";
+    } else if (!validateEmail(form.email)) {
+      currentError.email = "E-mail inválido";
     }
 
     if (form.cpf === "") {
