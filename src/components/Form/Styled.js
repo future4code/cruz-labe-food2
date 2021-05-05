@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Main = styled.form`
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 0rem;
     box-sizing: border-box;
 `
 

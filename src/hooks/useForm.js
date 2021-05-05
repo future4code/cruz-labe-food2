@@ -6,8 +6,8 @@ export const useForm = (initialForm) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
   };
-  const resetForm = () => {
-    setForm(initialForm);
+  const resetForm = (formUpdate) => {
+    setForm(formUpdate);
   };
   return [form, onChange, resetForm];
 };

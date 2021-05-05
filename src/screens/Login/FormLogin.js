@@ -4,7 +4,7 @@ import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { login } from "../../services/API";
-
+import validateEmail from "../../constants/validateEmail";
 const FormLogin = () => {
   const [form, onChange, resetForm] = useForm({ email: "", password: "" });
   const [error, setError] = useState({});
@@ -12,12 +12,14 @@ const FormLogin = () => {
   const history = useHistory();
   const handleClick = (event) => {
     event.preventDefault();
-    // console.log(form)
     setError({});
     const currentError = {};
 
     if (form.email === "") {
       currentError.email = "E-mail não foi inserido";
+    }
+    else if(!validateEmail(form.email)){
+      currentError.email = "E-mail inválido";
     }
     if (form.password === "") {
       currentError.password = "Senha não foi inserida";

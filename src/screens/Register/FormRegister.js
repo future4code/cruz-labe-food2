@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 import { signup } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
+import validateEmail from "../../constants/validateEmail";
 
 const FormRegister = () => {
   const [form, onChange, resetForm] = useForm({
@@ -28,6 +29,9 @@ const FormRegister = () => {
 
     if (form.email === "") {
       currentError.email = "E-mail não foi inserido";
+    }  
+    else if(!validateEmail(form.email)){
+      currentError.email = "E-mail inválido";
     }
 
     if (form.cpf === "") {

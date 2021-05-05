@@ -20,7 +20,7 @@ export const Link = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  cursor: pointer;
   text-decoration: none;
   color: black;
   :hover{
@@ -38,59 +38,34 @@ export const ProfileContainer = styled.div`
   width: 1.5rem;
   height: 1.5rem;
   object-fit: contain;
-  margin: 1rem 1rem 0 0;
   cursor: pointer;
   }
 `
 export const PersonalData = styled.div`
  display: flex;
-width: calc(100% - 2rem);
-margin: 0 0 0 1rem;
+width: 100%;
+padding: 0.5em 1rem;
 justify-content: space-between;
 align-items: flex-start;
-  p{
-    width: 100%;
-    height: 1.125rem;
-    margin: 1rem 1rem 0.5rem;
-    font-family: Roboto;
-    font-size: 1rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.39px;
-  }
+ >svg{
+   
+  margin: 0.5rem 0rem 0 0;
+ }
 `
 export const AddressData = styled.div`
  display: flex;
 justify-content: space-between;
 align-items: center;
   width: 100%;
-  height: 4.75rem;
-  margin: 1rem 0;
-  padding: 1rem;
   background-color: #eeeeee;
-  p{
-    width: 100%;
-    height: 1.125rem;
-    margin: 1rem 1rem 0.5rem;
-    font-family: Roboto;
-    font-size: 1rem;
-    font-weight: normal;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: -0.39px;
-    color: black;
-  }
-  > svg{
-    margin: 0 1rem 0 0;
-  }
+  
+padding: 0.5em 1rem;
+ 
 `
 export const Address = styled.div`
   width: 100%;
   height: 1.125rem;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.5rem 0;
   font-family: Roboto;
   font-size: 1rem;
   font-weight: normal;
@@ -138,4 +113,16 @@ export const Order = styled.div`
 `
 export const ProfileText = styled.div`
   width: calc(100% - 2rem);
+  p{
+    width: 100%;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: black;
+    margin:0.5rem 0;
+  }
 `
