@@ -1,20 +1,23 @@
 import React from 'react'
 import { DivDetalhes,BotaoRemover, Item_card, Card, ImageDiv, NomeDoItem, DetalhePedido, Preco, Remover, Quantidade, Numero, DivFuncionalidades } from './Styled'
 
-const CardCart = (props) => {
+const CardCart = ({name, description, price, image}) => {
     return(
             <Item_card>
                 <Card>
-                    <ImageDiv alt='pedido'/>
+                    <ImageDiv src={image} alt='pedido'/>
                     <DivDetalhes>
                         <NomeDoItem>
-                            Pedido
+                            {/* Pedido */}
+                            {name}
                         </NomeDoItem>
                         <DetalhePedido>
-                            burguer, queijo, picles
+                            {/* burguer, queijo, picles */}
+                            {description}
                         </DetalhePedido>
                         <Preco>
-                            10,00R$
+                            {/* 10,00R$ */}
+                            {price}
                         </Preco>
                     </DivDetalhes>
                     
