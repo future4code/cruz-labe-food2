@@ -2,7 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { goToCart, goToHome, goToProfile } from '../../Routes/Coordinators';
 import { CartButton, HomeButton, IconImage, MainFooter, ProfileButton } from './Styled';
-import {ReactComponent as Homepage} from '../../assets/homepage.svg'
+// import {ReactComponent as Homepage} from '../../assets/homepage.svg'
+import homepage from '../../assets/homepage.svg'
 import shoppingCart from '../../assets/shopping-cart.svg'
 import avatar from '../../assets/avatar.svg'
 
@@ -11,8 +12,8 @@ const FooterMenu = () => {
     return (
         <MainFooter>   
             <HomeButton>
-                <Homepage fill='#e8222e'/>
-                {/* <IconImage src={homepage} alt='home' onClick={() => goToHome(history)}/> */}
+                {/* <Homepage fill= "#e8222e"/> */}
+                <IconImage src={homepage} alt='home' onClick={() => goToHome(history)}/>
             </HomeButton>
 
             <CartButton> 
