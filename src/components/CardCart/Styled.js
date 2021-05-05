@@ -178,7 +178,7 @@ export const DivDetalhes = styled.div`
 export const BotaoRemover = styled.div`
     width: 5.625rem;
     height: 1.938rem;
-    margin: /*0.438rem*/ 2.2rem 0 0 -3.4rem /*0.5rem*/;
+    margin: /*0.438rem*/ 2.2rem 0 0 0.4rem /*0.5rem*/;
     padding: 0.5rem 1.438rem 0.563rem 1.5rem;
     border-radius: 8px;
     border: solid 1px #e02020;
@@ -201,7 +201,7 @@ export const Remover = styled.div`
 export const Quantidade = styled.div`
     width: 2.063rem;
     height: 2.063rem;
-    margin: 0 0 0.688rem 0.2rem /*1rem*/;
+    margin: 0 0 0.688rem 4rem /*1rem*/;
     padding: 0.438rem 0.75rem;
     border-radius: 8px;
     border: solid 1px #e8222e;
