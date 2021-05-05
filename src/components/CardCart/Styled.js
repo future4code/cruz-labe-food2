@@ -111,7 +111,7 @@ export const Item_card = styled.div`
     width: 100%/*20.5rem*/;
     height: 7.5rem;
     margin: 0.5rem 0 0;
-    padding: 0.5rem 1rem 0;
+    padding: 0.5rem 0rem 0;
 `
 
 export const Card = styled.div`
@@ -120,6 +120,7 @@ export const Card = styled.div`
     border-radius: 8px;
     border: solid 1px #b8b8b8;
     display: flex;
+    position: relative;
 `
 
 export const ImageDiv = styled.img`
@@ -178,9 +179,9 @@ export const DivDetalhes = styled.div`
 export const BotaoRemover = styled.div`
     width: 5.625rem;
     height: 1.938rem;
-    margin: /*0.438rem*/ 2.2rem 0 0 0.4rem /*0.5rem*/;
+    margin: /*0.438rem*/ 2.2rem 0 0 0.5rem /*0.5rem*/;
     padding: 0.5rem 1.438rem 0.563rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 8px 0 8px 0;
     border: solid 1px #e02020;
 `
 
@@ -201,9 +202,9 @@ export const Remover = styled.div`
 export const Quantidade = styled.div`
     width: 2.063rem;
     height: 2.063rem;
-    margin: 0 0 0.688rem 4rem /*1rem*/;
+    margin: 0 0 0.688rem 4.05rem /*1rem*/;
     padding: 0.438rem 0.75rem;
-    border-radius: 8px;
+    border-radius: 0 8px 0 8px;
     border: solid 1px #e8222e;
 `
 
@@ -224,6 +225,9 @@ export const Numero = styled.div`
 export const DivFuncionalidades = styled.div`
     display: flex;
     flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
 `
 
 export const Frete = styled.div`
