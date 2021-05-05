@@ -3,7 +3,7 @@ import { useForm } from "../../hooks/useForm";
 import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
-import { addAdress } from "../../services/API";
+import { updateAddress } from "../../services/API";
 
 const FormEditAddressPage = () => {
   const [form, onChange, resetForm] = useForm({
@@ -14,9 +14,9 @@ const FormEditAddressPage = () => {
     state: "",
     complement: "",
   });
-
   const [error, setError] = useState({});
   const history = useHistory();
+
   const handleClick = (event) => {
     event.preventDefault();
     const currentError = {};
@@ -39,7 +39,7 @@ const FormEditAddressPage = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      addAdress(form, history);
+      updateAddress(form, history);
     }
   };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import FooterMenu from "../components/FooterMenu/FooterMenu";
 import MenuHeader from "../components/MenuHeader/MenuHeader";
 import { useHistory } from "react-router-dom";
@@ -15,11 +15,13 @@ import {
 import { useRequestData } from "../hooks/useRequestData";
 import { ReactComponent as Edit } from "../assets/edit.svg";
 import {goToEditAddress, goToEditProfile} from '../Routes/Coordinators'
+import FoodHistory from "../components/FoodHistory/FoodHistory";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useRequestData("profile", {});
-
   const history = useHistory();
+  const [orders, setOrders] = useState([]);
+
   return (
     <>
       <MenuHeader currentPageLabel={"Meu Perfil"} isGoBack={true} />
@@ -46,7 +48,12 @@ const ProfilePage = () => {
           <Line />
         </History>
         <Order>
-          <p>Você não realizou nenhum pedido</p>
+         { orders.length > 0 ? orders.map((order) => {
+         return <FoodHistory title="título" date="data" subtotal="subtotal" /> 
+         })
+         :  
+         <p>Você não realizou nenhum pedido</p>} 
+         
         </Order>
       </ProfileContainer>
       <FooterMenu />
