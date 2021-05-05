@@ -37,11 +37,17 @@ export const ProfileContainer = styled.div`
   svg{
   width: 1.5rem;
   height: 1.5rem;
-  margin: 1rem 1rem 0.125rem 20rem;
   object-fit: contain;
+  margin: 1rem 1rem 0 0;
+  cursor: pointer;
   }
 `
 export const PersonalData = styled.div`
+ display: flex;
+width: calc(100% - 2rem);
+margin: 0 0 0 1rem;
+justify-content: space-between;
+align-items: flex-start;
   p{
     width: 100%;
     height: 1.125rem;
@@ -53,10 +59,12 @@ export const PersonalData = styled.div`
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.39px;
-    color: var(--black);
   }
 `
-export const AddressDta = styled.div`
+export const AddressData = styled.div`
+ display: flex;
+justify-content: space-between;
+align-items: center;
   width: 100%;
   height: 4.75rem;
   margin: 1rem 0;
@@ -74,6 +82,9 @@ export const AddressDta = styled.div`
     line-height: normal;
     letter-spacing: -0.39px;
     color: black;
+  }
+  > svg{
+    margin: 0 1rem 0 0;
   }
 `
 export const Address = styled.div`
@@ -125,9 +136,6 @@ export const Order = styled.div`
     text-align: center;
   }
 `
-export const PersonalText = styled.div`
-  
-`
-export const AddressText = styled.div`
-  
+export const ProfileText = styled.div`
+  width: calc(100% - 2rem);
 `

@@ -47,7 +47,8 @@ export const addAdress = (body, history) => {
 
 export const updateProfile = (body, history) => {
     const user = JSON.parse(localStorage.getItem('user'))
-    axios.put(`${BASE_URL}address`, body, {
+    console.log(`${BASE_URL}profile`)
+    axios.put(`${BASE_URL}profile`, body, {
         headers: {
             auth: user.token
         }
