@@ -1,41 +1,45 @@
 import React from "react";
 import FooterMenu from "../components/FooterMenu/FooterMenu";
 import MenuHeader from "../components/MenuHeader/MenuHeader";
+import { useHistory } from "react-router-dom";
 import {
   ProfileContainer,
   PersonalData,
-  AddressDta,
+  AddressData,
   Address,
   Line,
   History,
   Order,
-  PersonalText,
-  AddressText,
+  ProfileText,
 } from "../GlobalStyle";
 import { useRequestData } from "../hooks/useRequestData";
 import { ReactComponent as Edit } from "../assets/edit.svg";
+import {goToEditAddress, goToEditProfile} from '../Routes/Coordinators'
 
 const ProfilePage = () => {
   const [profile, setProfile] = useRequestData("profile", {});
 
+  const history = useHistory();
   return (
     <>
       <MenuHeader currentPageLabel={"Meu Perfil"} isGoBack={true} />
       <ProfileContainer>
         <PersonalData>
-          <PersonalText>
+          <ProfileText>
             <p>{profile.user && profile.user.name}</p>
             <p>{profile.user && profile.user.email}</p>
             <p>{profile.user && profile.user.cpf}</p>
-          </PersonalText>
+          </ProfileText>
+          <Edit onClick={() => goToEditProfile(history)}/>
         </PersonalData>
 
-        <AddressDta>
-          <AddressText>
+        <AddressData>
+          <ProfileText>
             <Address>Endereço Cadastrado</Address>
             <p>{profile.user && profile.user.address}</p>
-          </AddressText>
-        </AddressDta>
+          </ProfileText>
+          <Edit onClick={() => goToEditAddress(history)}/>
+        </AddressData>
 
         <History>
           <p>Histórico de pedidos</p>

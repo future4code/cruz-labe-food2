@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "../../hooks/useForm";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
-import { signup } from "../../services/API";
+import { updateProfile } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
 
@@ -10,9 +10,7 @@ const FormEditPersonalData = () => {
   const [form, onChange, resetForm] = useForm({
     name: "",
     email: "",
-    cpf: "",
-    password: "",
-    confirmPassword: "",
+    cpf: ""
   });
   const [error, setError] = useState({});
 
@@ -38,9 +36,7 @@ const FormEditPersonalData = () => {
     setError({ ...currentError });
 
     if (Object.keys(currentError).length === 0) {
-      const body = { ...form };
-      delete body.confirmPassword;
-      signup(body, history);
+      updateProfile(form, history);
     }
   };
 
