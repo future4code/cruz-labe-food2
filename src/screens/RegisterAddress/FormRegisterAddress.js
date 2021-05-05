@@ -3,7 +3,7 @@ import { useForm } from "../../hooks/useForm";
 import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
-import { addAdress } from "../../services/API";
+import { addAddress } from "../../services/API";
 
 const FormRegisterAddress = () => {
   const [form, onChange, resetForm] = useForm({
@@ -39,7 +39,7 @@ const FormRegisterAddress = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      addAdress(form, history);
+      addAddress(form, history);
     }
   };
 
