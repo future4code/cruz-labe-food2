@@ -1,29 +1,8 @@
 import React from 'react'
-import FooterMenu from '../FooterMenu/FooterMenu'
-import MenuHeader from '../MenuHeader/MenuHeader'
-import {Rectangle, Carrinho, DivBotaoConfirma, FormaPagamento, DivPrecos, DivDetalhes,BotaoRemover, Endereco_entrega, Rua_cliente, Restaurante, Rua_restaurante, Tempo, Item_card, Card, ImageDiv, NomeDoItem, DetalhePedido, Preco, Remover, Quantidade, Numero, DivFuncionalidades, Frete, PrecoSubtotal, Subtotal, OpcaoPagamento, RadiobuttonUnchecked, RadiobuttonChecked, Fill, BotaoConfirma} from './Styled'
+import { DivDetalhes,BotaoRemover, Item_card, Card, ImageDiv, NomeDoItem, DetalhePedido, Preco, Remover, Quantidade, Numero, DivFuncionalidades } from './Styled'
 
 const CardCart = (props) => {
     return(
-        <Carrinho>
-            <MenuHeader currentPageLabel='Meu Carrinho'/>
-            <Rectangle>
-                <Endereco_entrega>
-                    Endereço de entrega
-                </Endereco_entrega>
-                <Rua_cliente>
-                    Vem por props, 0
-                </Rua_cliente>   
-            </Rectangle>
-            <Restaurante>
-                Nome do restaurante
-            </Restaurante>    
-            <Rua_restaurante>
-                Rua que vem por props, 0
-            </Rua_restaurante>
-            <Tempo>
-                30-40 min
-            </Tempo>
             <Item_card>
                 <Card>
                     <ImageDiv alt='pedido'/>
@@ -53,39 +32,6 @@ const CardCart = (props) => {
                     </DivFuncionalidades>
                 </Card>
             </Item_card>
-                    <Frete>
-                        Frete R$
-                    </Frete>
-                    <DivPrecos>
-                        <Subtotal>
-                            SUBTOTAL
-                        </Subtotal>
-                        <PrecoSubtotal>
-                            R$ 60,00
-                        </PrecoSubtotal>
-                    </DivPrecos>
-                    <FormaPagamento>
-                        Pagamento
-                        <hr/>
-                    </FormaPagamento>
-                    <OpcaoPagamento>
-                        <RadiobuttonChecked>
-                            <Fill/>
-                        </RadiobuttonChecked>
-                        Dinheiro
-                    </OpcaoPagamento>
-                    <OpcaoPagamento>
-                        <RadiobuttonUnchecked/>
-                        Cartão
-                    </OpcaoPagamento>
-                    <DivBotaoConfirma>
-                        <BotaoConfirma onClick={props.onClick}>
-                            Confirma
-                        </BotaoConfirma>
-                    </DivBotaoConfirma>
-                    <FooterMenu/>
-        </Carrinho>
-
         )
 }
 

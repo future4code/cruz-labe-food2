@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import GlobalStateContext from '../global/GlobalStateContext'
 import CardCart from '../components/CardCart/CardCart'
-import FooterMenu from '../components/FooterMenu/FooterMenu'
 import axios from 'axios'
 import { BASE_URL } from '../constants/urls'
+import ComponentCart from '../components/CardCart/ComponentCart'
 
 
 const CartPage = () => {
@@ -14,15 +14,15 @@ const CartPage = () => {
     const placeOrder = () => {
         const body = {
             "products": [{
-                "id": "CnKdjU6CyKakQDGHzNln",
+                "id": "3vcYYSOEf8dKeTPd7vHe",
                 "quantity": 10
             }, {
                 "quantity": 1,
-                "id": "KJqMl2DxeShkSBevKVre"
+                "id": "5omTFSOBYiTqeiDwhiBx"
             }],
             "paymentMethod": "creditcard"
         }
-        axios.get(`${BASE_URL}restaurants/1/order`, body, {
+        axios.post(`${BASE_URL}restaurants/1/order`, body, {
         headers: {
             auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im95ZHhmT3IxSlFWbmpJZTBxMEMyIiwibmFtZSI6IkFuZHJlIiwiZW1haWwiOiJhbmRyZUBmdXR1cmU0LmNvbSIsImNwZiI6IjIyMi4yMjIuMjIyLTU1IiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTYyMDE1NDM3Mn0.ncNcA4RIwKkbWfAbr1cKD9HBxDkmClOqClOhspbzzmM'
         }
@@ -36,7 +36,7 @@ const CartPage = () => {
 
     return (
             <div>
-                <CardCart onClick={placeOrder}/>
+                <ComponentCart onClick={placeOrder}/>
                 
             </div>
             )
