@@ -6,6 +6,7 @@ export const Card = styled.div`
     padding: 0 0 1rem;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
+    margin-top: 0.5rem;
 `
 
 export const Banner = styled.img`
