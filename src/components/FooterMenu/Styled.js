@@ -1,13 +1,16 @@
 import styled from 'styled-components'
 
 export const MainFooter = styled.div`
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     position: fixed;
     bottom: 1px;
     border-top: 1px solid black;
+    background-color: #ffffff;
+    left: 0;
+    bottom: 0;
 `
 export const HomeButton = styled.div`
     width: 7.5rem;
