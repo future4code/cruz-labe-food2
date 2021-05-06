@@ -6,7 +6,7 @@ import { goToRestaurant } from '../../Routes/Coordinators'
 export default function CardRestaurant({ restaurant, hasDatails }) {
   const history = useHistory()
 
-  console.log(restaurant);
+  // console.log(restaurant);
 
   return (
     <Card onClick={() => goToRestaurant(history, restaurant.id)} hasDatails={hasDatails}>
