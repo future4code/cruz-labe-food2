@@ -5,6 +5,7 @@ export const InitialContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #E8222E;
+  max-width: 100%;
   width:500px;
   height: 100vh; 
    z-index: 1;
