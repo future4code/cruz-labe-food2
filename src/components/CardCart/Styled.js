@@ -294,7 +294,7 @@ export const FormaPagamento = styled.div`
 
 export const OpcaoPagamento = styled.div`
     width: 18.5rem;
-    height: 1.125rem;
+    height: /*1.125rem*/2rem;
     margin: 0.688rem 1rem 0.688rem 0.5rem;
     font-family: Roboto;
     font-size: 1rem;
@@ -304,23 +304,29 @@ export const OpcaoPagamento = styled.div`
     line-height: normal;
     letter-spacing: -0.39px;
     color: var(--black);
+    display: flex;
+    align-items:center;
 `
 
-export const RadiobuttonUnchecked = styled.button`
+export const DivRadio = styled.div`
+    margin-top: 0.5rem;
+`
+
+export const RadiobuttonUnchecked = styled.img`
     width: 1.5rem;
     height: 1.5rem;
     margin: 0.5rem 0.5rem 0.5rem 1rem;
     object-fit: contain;
 `
 
-export const RadiobuttonChecked = styled.button`
+export const RadiobuttonChecked = styled.input`
     width: 1.5rem;
     height: 1.5rem;
     margin: 0.5rem 0.5rem 1rem 1rem;
     object-fit: contain;
 `
 
-export const Fill = styled.div`
+export const Fill = styled.img`
     width: 0.625rem;
     height: 0.625rem;
     background-color: var(--black);
@@ -350,6 +356,22 @@ export const BotaoConfirma=styled.button`
     background-color: #e8222e;
     border: none;
 ` 
+
+export const TextoVazio = styled.div`
+    width: 18.5rem;
+    height: 1.125rem;
+    opacity: 0.89;
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    text-align: center;
+    color: var(--black);
+`
+  
   
   
   

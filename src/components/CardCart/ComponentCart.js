@@ -1,21 +1,37 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import FooterMenu from '../FooterMenu/FooterMenu'
 import MenuHeader from '../MenuHeader/MenuHeader'
 import MainContainer from '../../components/MainContainer/MainContainer'
 import CardCart from './CardCart'
-import {Rectangle, DivBotaoConfirma, FormaPagamento, DivPrecos, Endereco_entrega, Rua_cliente, Restaurante, Rua_restaurante, Tempo,  Frete, PrecoSubtotal, Subtotal, OpcaoPagamento, RadiobuttonUnchecked, RadiobuttonChecked, Fill, BotaoConfirma} from './Styled'
+import {Rectangle, DivBotaoConfirma, FormaPagamento, DivPrecos, Endereco_entrega, Rua_cliente, Restaurante, Rua_restaurante, Tempo,  Frete, PrecoSubtotal, Subtotal, OpcaoPagamento, RadiobuttonUnchecked, RadiobuttonChecked, Fill, BotaoConfirma, TextoVazio, DivRadio} from './Styled'
+import { useRequestData } from '../../hooks/useRequestData'
+import GlobalStateContext from '../../global/GlobalStateContext'
+import radiobuttonUnchecked from '../../assets/radiobutton-unchecked.svg'
+import radiobuttonChecked from '../../assets/radiobutton-checked.svg'
 
 const ComponentCart = (props) => {
+    const [profile, setProfile] = useRequestData("profile", {});
+    const { cart, setCart } = useContext(GlobalStateContext)
+    let payment = 'creditcard'
+    const dinheiro = () => {
+        payment = 'money'
+        console.log(payment) 
+    }
+    const cartao = () => {
+        payment = 'creditcard'
+        console.log(payment) 
+    }
+    console.log(payment)
+    
     return(
         <MainContainer>
-        {/* <Carrinho> */}
             <MenuHeader currentPageLabel='Meu Carrinho'/>
             <Rectangle>
                 <Endereco_entrega>
                     Endereço de entrega
                 </Endereco_entrega>
                 <Rua_cliente>
-                    Vem por props, 0
+                    {profile.user && profile.user.address}
                 </Rua_cliente>   
             </Rectangle>
             <Restaurante>
@@ -28,7 +44,13 @@ const ComponentCart = (props) => {
                 30-40 min
             </Tempo>
 
-            <CardCart/>
+            {cart.length > 0 ? cart.map((product) => {
+                return <CardCart/> 
+            })
+            :
+            <TextoVazio>
+                Carrinho Vazio
+            </TextoVazio>} 
 
                     <Frete>
                         Frete R$
@@ -46,13 +68,20 @@ const ComponentCart = (props) => {
                         <hr/>
                     </FormaPagamento>
                     <OpcaoPagamento>
-                        <RadiobuttonChecked>
-                            <Fill/>
-                        </RadiobuttonChecked>
-                        Dinheiro
+                        <DivRadio>
+                            <RadiobuttonChecked name='teste' type='radio'
+                                onClick={dinheiro}
+                                value='money'/>
+                        </DivRadio>
+                                Dinheiro
                     </OpcaoPagamento>
+
                     <OpcaoPagamento>
-                        <RadiobuttonUnchecked/>
+                        <DivRadio>
+                            <RadiobuttonChecked name='teste' type='radio' 
+                            onClick={cartao}
+                            value='creditcard'/>
+                        </DivRadio>
                         Cartão
                     </OpcaoPagamento>
                     <DivBotaoConfirma>
@@ -60,9 +89,10 @@ const ComponentCart = (props) => {
                             Confirma
                         </BotaoConfirma>
                     </DivBotaoConfirma>
+                    
                     <FooterMenu/>
-        {/* </Carrinho> */}
         </MainContainer>
+        
         )
 }
 

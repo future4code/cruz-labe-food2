@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import GlobalStateContext from '../global/GlobalStateContext'
 import CardCart from '../components/CardCart/CardCart'
 import axios from 'axios'
@@ -8,8 +8,19 @@ import ComponentCart from '../components/CardCart/ComponentCart'
 
 const CartPage = () => {
     const { cart, setCart } = useContext(GlobalStateContext)
-    const products = [] // inserir estado global dos produtos 
+    const products = [] // inserir estado global dos produtos
+    const [paymentMethod, setPaymentMethod] = useState('creditcard')
+    console.log(paymentMethod) 
 
+    const dinheiro = () => {
+        setPaymentMethod('money')
+        console.log(paymentMethod)
+    }
+
+    const cartao = () => {    
+        setPaymentMethod('creditcard')
+        console.log(paymentMethod)
+    }
 
     const placeOrder = () => {
         const body = {
@@ -20,7 +31,7 @@ const CartPage = () => {
                 "quantity": 1,
                 "id": "5omTFSOBYiTqeiDwhiBx"
             }],
-            "paymentMethod": "creditcard"
+            "paymentMethod": paymentMethod
         }
         axios.post(`${BASE_URL}restaurants/1/order`, body, {
         headers: {
@@ -29,6 +40,7 @@ const CartPage = () => {
     })
     .then((res)=> {
         console.log(res)
+        console.log(paymentMethod)
     }).catch((err)=>{
         console.log(err)
     })
@@ -36,7 +48,7 @@ const CartPage = () => {
 
     return (
             <div>
-                <ComponentCart onClick={placeOrder}/>
+                <ComponentCart onClick={placeOrder} payCard = {cartao} payMoney = {dinheiro}/>
                 
             </div>
             )
