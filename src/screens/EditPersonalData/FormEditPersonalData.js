@@ -8,6 +8,7 @@ import validateCPF from "../../constants/validateCPF";
 import validateEmail from '../../constants/validateEmail'
 import {useRequestData} from '../../hooks/useRequestData';
 import maskCPF from '../../constants/maskCPF' ;
+import Snackbar from '../../components/Snakbar/Snakbar'
 
 const FormEditPersonalData = () => {
   const [form, onChange, resetForm] = useForm({
@@ -17,6 +18,7 @@ const FormEditPersonalData = () => {
   });
   const [error, setError] = useState({});
   const [profile, setProfile] = useRequestData('profile', {})
+  const [snack, setSnack] = useState({text: "", sucess: false})
    useEffect(()=> {
      if(Object.keys(profile).length > 0){
       const profileUpdate = { ...profile.user };
@@ -51,7 +53,7 @@ const FormEditPersonalData = () => {
     setError({ ...currentError });
 
     if (Object.keys(currentError).length === 0) {
-      updateProfile(form, history);
+      updateProfile(form, history, setSnack);
     }
   };
 
@@ -89,6 +91,8 @@ const FormEditPersonalData = () => {
           required={true}
         />
       </Form>
+      
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>
   );
 };
