@@ -2,7 +2,8 @@ import {BASE_URL} from '../constants/urls';
 import axios from 'axios'
 import {goToSignUpAddress, goToHome, goToProfile} from '../Routes/Coordinators';
 
-export const signup = (body, history) => {
+export const signup = (body, history, setSnack) => {
+    setSnack({text: ""})
     axios.post(`${BASE_URL}signup`, body)
     .then((res)=> {
         console.log(res)
@@ -10,11 +11,15 @@ export const signup = (body, history) => {
         goToSignUpAddress(history)
     }).catch((err)=>{
         console.log(err)
-        alert('Não foi possível criar cadastro. Verifique se e-mail e/ou CPF já estão registrados em outra conta!')
+        setSnack(
+            {text: "Não foi possível criar cadastro. Verifique se e-mail e/ou CPF já estão registrados em outra conta!",
+            sucess: false
+        })
     })
 }
 
-export const login = (body, history) => {
+export const login = (body, history, setSnack) => {
+    setSnack({text: ""})
     axios.post(`${BASE_URL}login`, body)
     .then((res)=> {
         console.log(res)
@@ -28,12 +33,18 @@ export const login = (body, history) => {
         }
     }).catch((err)=>{
         console.log(err)
-        alert("E-mail e/ou senha incorreta")
+        
+    setSnack(
+        {text: "E-mail e/ou senha incorreta",
+        sucess: false
+    })
+        
     })
 }
 
-export const putAddress = (body, history, goTo) => {
+export const putAddress = (body, history, goTo, setSnack) => {
     const user = JSON.parse(localStorage.getItem('user'))
+    setSnack({text: ""})
     axios.put(`${BASE_URL}address`, body, {
         headers: {
             auth: user.token
@@ -45,7 +56,10 @@ export const putAddress = (body, history, goTo) => {
         goTo(history)
     }).catch((err)=>{
         console.log(err)
-        alert("Não foi possível adicionar endereço, tente novamente!")
+        setSnack(
+            {text: "Não foi possível adicionar endereço, tente novamente!",
+            sucess: false
+        })
     })
 }
 
@@ -66,10 +80,10 @@ export const updateProfile = (body, history) => {
     })
 }
 
-export const updateAddress = (body, history) => {
-    putAddress(body, history, goToProfile)
+export const updateAddress = (body, history, setSnack) => {
+    putAddress(body, history, goToProfile, setSnack)
 }
 
-export const addAddress = (body, history) => {
-    putAddress(body, history, goToHome)
+export const addAddress = (body, history, setSnack) => {
+    putAddress(body, history, goToHome, setSnack)
 }

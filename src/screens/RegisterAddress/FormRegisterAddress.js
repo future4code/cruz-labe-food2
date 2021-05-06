@@ -4,6 +4,7 @@ import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { addAddress } from "../../services/API";
+import Snackbar from '../../components/Snakbar/Snakbar'
 
 const FormRegisterAddress = () => {
   const [form, onChange, resetForm] = useForm({
@@ -17,6 +18,7 @@ const FormRegisterAddress = () => {
 
   const [error, setError] = useState({});
   const history = useHistory();
+  const [snack, setSnack] = useState({text: "", sucess: false})
   const handleClick = (event) => {
     event.preventDefault();
     const currentError = {};
@@ -41,7 +43,7 @@ const FormRegisterAddress = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      addAddress(form, history);
+      addAddress(form, history, setSnack);
     }
   };
 
@@ -107,7 +109,8 @@ const FormRegisterAddress = () => {
           name="state"
           error={error["state"]}
           required={true}
-        />
+        /> 
+        {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
       </Form>
     </div>
   );

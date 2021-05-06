@@ -5,6 +5,7 @@ import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { updateAddress } from "../../services/API";
 import {useRequestData} from '../../hooks/useRequestData'
+import Snackbar from '../../components/Snakbar/Snakbar'
 const FormEditAddressPage = () => {
   const [form, onChange, resetForm] = useForm({
     street: "",
@@ -16,6 +17,7 @@ const FormEditAddressPage = () => {
   });
   const [error, setError] = useState({});
   const [address, setAddress] = useRequestData('profile/address', {})
+  const [snack, setSnack] = useState({text: "", sucess: false})
   const history = useHistory();
 
   useEffect(()=> {
@@ -48,12 +50,13 @@ const FormEditAddressPage = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      updateAddress(form, history);
+      updateAddress(form, history, setSnack)
     }
   };
 
   return (
     <div>
+{console.log("Er", snack)}
       <Form onSubmit={handleClick} labelButton="Salvar" >
         <Input
           label="Logradouro"
@@ -116,6 +119,7 @@ const FormEditAddressPage = () => {
           required={true}
         />
       </Form>
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>
   );
 };

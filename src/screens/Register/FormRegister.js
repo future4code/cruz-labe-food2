@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
 import validateEmail from "../../constants/validateEmail";
 import maskCPF from '../../constants/maskCPF' ;
+import Snackbar from '../../components/Snakbar/Snakbar'
 
 const FormRegister = () => {
   const [form, onChange, resetForm] = useForm({
@@ -18,6 +19,7 @@ const FormRegister = () => {
   });
   const [error, setError] = useState({});
 
+  const [snack, setSnack] = useState({text: "", sucess: false})
   const history = useHistory();
   const handleClick = (event) => {
     event.preventDefault();
@@ -55,7 +57,7 @@ const FormRegister = () => {
     if (Object.keys(currentError).length === 0) {
       const body = { ...form };
       delete body.confirmPassword;
-      signup(body, history);
+      signup(body, history, setSnack);
     }
   };
 
@@ -115,6 +117,7 @@ const FormRegister = () => {
           required={true}
         />
       </Form>
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>
   );
 };

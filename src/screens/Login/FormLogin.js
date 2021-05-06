@@ -5,9 +5,11 @@ import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { login } from "../../services/API";
 import validateEmail from "../../constants/validateEmail";
+import Snackbar from '../../components/Snakbar/Snakbar'
 const FormLogin = () => {
   const [form, onChange, resetForm] = useForm({ email: "", password: "" });
   const [error, setError] = useState({});
+  const [snack, setSnack] = useState({text: "", sucess: false})
 
   const history = useHistory();
   const handleClick = (event) => {
@@ -29,7 +31,7 @@ const FormLogin = () => {
     setError({ ...currentError });
 
     if (Object.keys(currentError).length === 0) {
-      login(form, history);
+      login(form, history, setSnack);
     }
   };
 
@@ -57,6 +59,7 @@ const FormLogin = () => {
           error={error["password"]}
         />
       </Form>
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>
   );
 };
