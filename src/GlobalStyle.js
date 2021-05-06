@@ -126,3 +126,33 @@ export const ProfileText = styled.div`
     margin:0.5rem 0;
   }
 `
+export const DivConsteinerError = styled.div`
+display:flex;
+justify-content: center;
+align-items: center;
+height: 100%;
+flex-direction: column;
+ 
+  #main{
+flex-direction: column;
+    display:flex;
+justify-content: center;
+align-items: center;
+flex-grow: 1;
+svg{
+    width: 7.875rem;
+    height: 4.063rem;
+  }
+  p{
+    font-family: Roboto;
+    font-size: 1rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.39px;
+    color: black;
+    margin: 1rem;
+  }
+  }
+`
