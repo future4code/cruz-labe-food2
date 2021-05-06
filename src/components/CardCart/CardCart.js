@@ -14,35 +14,34 @@ import {
   DivFuncionalidades,
 } from "./Styled";
 
-const CardCart = ({ name, description, price, image }) => {
+const CardCart = ({ name, description, price, image, quantity }) => {
   return (
     <Item_card>
+
       <Card>
+
         <ImageDiv src={image} alt={name} />
+
         <DivDetalhes>
-          <NomeDoItem>
-            {/* Pedido */}
-            {name}
-          </NomeDoItem>
-          <DetalhePedido>
-            {/* burguer, queijo, picles */}
-            {description}
-          </DetalhePedido>
-          <Preco>
-            {/* 10,00R$ */}
-            R${price}
-          </Preco>
+          <NomeDoItem>{name}</NomeDoItem>
+          <DetalhePedido>{description}</DetalhePedido>
+          <Preco>R${price}</Preco>
         </DivDetalhes>
 
         <DivFuncionalidades>
-          <Quantidade>
-            <Numero>2</Numero>
-          </Quantidade>
-          <BotaoRemover>
-            <Remover>remover</Remover>
-          </BotaoRemover>
+
+            <Quantidade>
+              <Numero>{quantity}</Numero>
+            </Quantidade>
+
+            <BotaoRemover>
+              <Remover>remover</Remover>
+            </BotaoRemover>
+
         </DivFuncionalidades>
+
       </Card>
+
     </Item_card>
   );
 };
