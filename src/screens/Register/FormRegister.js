@@ -6,6 +6,7 @@ import { signup } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
 import validateEmail from "../../constants/validateEmail";
+import maskCPF from '../../constants/maskCPF' ;
 
 const FormRegister = () => {
   const [form, onChange, resetForm] = useForm({
@@ -58,6 +59,8 @@ const FormRegister = () => {
     }
   };
 
+
+
   return (
     <div>
       <Form onSubmit={handleClick} labelButton="Criar" title="Cadastrar">
@@ -85,7 +88,7 @@ const FormRegister = () => {
           label="CPF"
           placeholder="000.000.000-00"
           value={form.cpf}
-          onChange={onChange}
+          onChange={(e)=> onChange(e, maskCPF)}
           type="text"
           name="cpf"
           error={error["cpf"]}
