@@ -25,15 +25,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedInputBase() {
+export default function CustomizedInputBase({updateBusca, value}) {
   const classes = useStyles();
+
+  const handleInput = (event) => {
+    updateBusca(event.target.value)
+  }
 
   return (
     <Container>
       <IconButton className={classes.iconButton} aria-label="menu">
         <SearchIcon />
       </IconButton>
-      <InputBase
+      <InputBase 
+        value={value}
+        onChange={handleInput}
         className={classes.input}
         placeholder="Restaurante"
       />
