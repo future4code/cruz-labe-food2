@@ -9,10 +9,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="Container">
+     
+       {start &&
+       <InitialAnimation setStart={setStart}/>        
+       }
+        <div className="Container">
       <GlobalState>
-      {start ? <InitialAnimation setStart={setStart}/> : 
-        <Router/> }
+        <Router/> 
       </GlobalState>
       </div>
     </div>
