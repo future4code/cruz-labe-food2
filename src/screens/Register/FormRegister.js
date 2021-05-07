@@ -8,6 +8,7 @@ import validateCPF from "../../constants/validateCPF";
 import validateEmail from "../../constants/validateEmail";
 import maskCPF from '../../constants/maskCPF' ;
 import Snackbar from '../../components/Snakbar/Snakbar'
+import {LinearProgressGlobal} from '../../GlobalStyle'
 
 const FormRegister = () => {
   const [form, onChange, resetForm] = useForm({
@@ -18,8 +19,9 @@ const FormRegister = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState({});
-
   const [snack, setSnack] = useState({text: "", sucess: false})
+  const [loading, setLoading] = useState(false)
+
   const history = useHistory();
   const handleClick = (event) => {
     event.preventDefault();
@@ -45,8 +47,8 @@ const FormRegister = () => {
 
     if (form.password === "") {
       currentError.password = "Senha não foi inserida";
-    } else if (form.password.length <= 6) {
-      currentError.password = "Senha precisa ter mais que 6 caracteres";
+    } else if (form.password.length < 6) {
+      currentError.password = "Senha precisa ter no mínimo 6 caracteres";
     } else {
       if (form.password != form.confirmPassword) {
         currentError.confirmPassword = "As senhas precisam ser iguais";
@@ -57,7 +59,7 @@ const FormRegister = () => {
     if (Object.keys(currentError).length === 0) {
       const body = { ...form };
       delete body.confirmPassword;
-      signup(body, history, setSnack);
+      signup(body, history, setSnack, setLoading);
     }
   };
 
@@ -116,6 +118,7 @@ const FormRegister = () => {
           error={error["confirmPassword"]}
           required={true}
         />
+          {loading &&  <LinearProgressGlobal/>}
       </Form>
       {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>

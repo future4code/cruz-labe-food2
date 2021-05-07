@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {LinearProgress} from '@material-ui/core';
+
 const colorRedTheme = '#e02020'
 export const DivLog = styled.div`
   display: flex;
@@ -154,5 +156,12 @@ svg{
     color: black;
     margin: 1rem;
   }
+  }
+`
+export const LinearProgressGlobal = styled(LinearProgress)`
+  background-color: #e0202080 !important;
+  color: #e02020;
+  *{
+    background-color: #e02020!important;
   }
 `
