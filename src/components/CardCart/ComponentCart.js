@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import FooterMenu from '../FooterMenu/FooterMenu'
 import MenuHeader from '../MenuHeader/MenuHeader'
 import MainContainer from '../../components/MainContainer/MainContainer'
@@ -12,7 +12,9 @@ import radiobuttonChecked from '../../assets/radiobutton-checked.svg'
 const ComponentCart = (props) => {
     const [profile, setProfile] = useRequestData("profile", {});
     const { cart, setCart } = useContext(GlobalStateContext)
+    const [priceToPay, setPriceToPay] = useState(0)
     let payment = 'creditcard'
+
     const dinheiro = () => {
         payment = 'money'
         console.log(payment) 
@@ -21,7 +23,25 @@ const ComponentCart = (props) => {
         payment = 'creditcard'
         console.log(payment) 
     }
-    console.log(payment)
+
+    useEffect(() => {
+    let currentTotal = 0
+    cart.forEach((product) => {
+      currentTotal += product.price * product.quantity
+    })
+    setPriceToPay()
+  })
+
+  const removeItemToCart = (itemToRemove) => {
+    const index = cart.findIndex((i) => i.id === itemToRemove.id)
+    let newCart = [...cart]
+    if (index === 1) {
+      newCart.splice(index, 1)
+    } else {
+      newCart[index].quantity -= 1 
+    }
+    setCart(newCart)
+  }
     
     return(
         <MainContainer>
