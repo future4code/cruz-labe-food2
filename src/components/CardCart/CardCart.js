@@ -1,24 +1,27 @@
+import  DialogCart  from "../../components/Dialog/Dialog";
 import { PinDropSharp } from "@material-ui/icons";
 import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import GlobalStateContext from "../../global/GlobalStateContext";
 import {
   DivDetalhes,
-  BotaoRemover,
+  BotaoCard,
   Item_card,
   Card,
   ImageDiv,
   NomeDoItem,
   DetalhePedido,
   Preco,
-  Remover,
+  TextoBotaoCard,
   Quantidade,
   Numero,
   DivFuncionalidades,
 } from "./Styled";
 
-const CardCart = ({product, addItemToCart}) => {
-
+const CardCart = ({product, addItemToCart, removeItemToCart}) => {
+    const [isOpenDialog, setIsOpenDialog] = useState(false)
+    const [quantity, setQuantity] = useState(0)
+    
     return (
     <Item_card>
 
@@ -35,17 +38,24 @@ const CardCart = ({product, addItemToCart}) => {
 
         <DivFuncionalidades>
 
-            <Quantidade>
+            {product.quantity > 0 &&
+             <Quantidade>
               <Numero>{product.quantity}</Numero>
-            </Quantidade>
+            </Quantidade>}
 
             {/* <BotaoRemover>
               <Remover>remover</Remover>
             </BotaoRemover> */}
 
-            <BotaoRemover onClick={() => addItemToCart(product, 1)}>
-              <Remover>adicionar</Remover>
-            </BotaoRemover>
+            <BotaoCard onClick={product.quantity > 0 ? (() => removeItemToCart(product)) : 
+                () => setIsOpenDialog(true) }>
+                    { <DialogCart open={isOpenDialog} 
+                        setOpen={setIsOpenDialog} 
+                        addItemToCart={addItemToCart} 
+                        product={product}
+                        setQuantityCard={setQuantity}/>}
+              <TextoBotaoCard>{product.quantity > 0 ? "remover" : "adicionar"}</TextoBotaoCard>
+            </BotaoCard>
 
         </DivFuncionalidades>
 

@@ -12,7 +12,7 @@ import radiobuttonChecked from '../../assets/radiobutton-checked.svg'
 const ComponentCart = (props) => {
     const [profile, setProfile] = useRequestData("profile", {});
     const { cart, setCart } = useContext(GlobalStateContext)
-    console.log(cart)
+    const restaurant = JSON.parse(localStorage.getItem('restaurant'))
     const [priceToPay, setPriceToPay] = useState(0)
     let payment = 'creditcard'
 
@@ -34,13 +34,9 @@ const ComponentCart = (props) => {
   })
 
   const removeItemToCart = (itemToRemove) => {
-    const index = cart.findIndex((i) => i.id === itemToRemove.id)
-    let newCart = [...cart]
-    if (index === 1) {
-      newCart.splice(index, 1)
-    } else {
-      newCart[index].quantity -= 1 
-    }
+    let newCart = cart.filter((item) => {
+      return item.id !== itemToRemove.id
+    })
     setCart(newCart)
   }
     console.log(cart)
@@ -56,33 +52,38 @@ const ComponentCart = (props) => {
                     {profile.user && profile.user.address}
                 </Rua_cliente>   
             </Rectangle>
+            {restaurant && 
+            <>
             <Restaurante>
-                Nome do restaurante
+                {restaurant.name}
             </Restaurante>    
             <Rua_restaurante>
-                Rua que vem por props, 0
+                {restaurant.address}
             </Rua_restaurante>
             <Tempo>
-                30-40 min
+                {restaurant.deliveryTime} min
             </Tempo>
-
+            </>}
             {cart.length > 0 ? cart.map((product) => {
-                return <CardCart product={product}/> 
+                return <CardCart product={product} removeItemToCart={removeItemToCart}/> 
             })
             :
             <TextoVazio>
                 Carrinho Vazio
             </TextoVazio>} 
 
+                    {restaurant && 
                     <Frete>
-                        Frete R$
-                    </Frete>
+                        Frete R${restaurant.shipping} 
+                    </Frete>}
                     <DivPrecos>
                         <Subtotal>
                             SUBTOTAL
                         </Subtotal>
                         <PrecoSubtotal>
-                            R$ 60,00
+                            R$ {cart.reduce((acc,item) => {
+                                return acc += item.price
+                            }, 0)}
                         </PrecoSubtotal>
                     </DivPrecos>
                     <FormaPagamento>

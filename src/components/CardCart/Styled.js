@@ -176,7 +176,7 @@ export const DivDetalhes = styled.div`
     flex-direction: column;
 `
 
-export const BotaoRemover = styled.div`
+export const BotaoCard = styled.div`
     width: 5.625rem;
     height: 1.938rem;
     margin: /*0.438rem*/ 2.2rem 0 0 0.5rem /*0.5rem*/;
@@ -185,7 +185,7 @@ export const BotaoRemover = styled.div`
     border: solid 1px #e02020;
 `
 
-export const Remover = styled.div`
+export const TextoBotaoCard = styled.div`
     width: 2.688rem;
     height: 0.875rem;
     font-family: Roboto;

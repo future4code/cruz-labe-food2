@@ -6,7 +6,7 @@ import { useRequestData } from "../hooks/useRequestData";
 import { useParams } from "react-router-dom";
 import SectionDetails from "../components/SectionDetails/SectionDetails";
 import CardCart from "../components/CardCart/CardCart";
-import { SettingsApplicationsRounded } from "@material-ui/icons";
+import { ContactsOutlined, SettingsApplicationsRounded } from "@material-ui/icons";
 import GlobalStateContext from "../global/GlobalStateContext";
 
 const RestaurantPage = () => {
@@ -33,8 +33,31 @@ const RestaurantPage = () => {
       newCart[index].quantity = quantity 
     }
     setCart(newCart)
+    const products = restaurant.products.map((item) => {
+      if (item.id === newItem.id) {
+        item.quantity = quantity
+      }
+      return item 
+    })
+    setRestaurant({...restaurant, products})
     console.log(newCart)
     console.log(cart)
+    localStorage.setItem('restaurant', JSON.stringify(restaurant))
+  }
+
+  const removeItemToCart = (itemToRemove) => {
+    let newCart = cart.filter((item) => {
+      return item.id !== itemToRemove.id
+    })
+    setCart(newCart)
+    const products = restaurant.products.map((item) => {
+      if (item.id === itemToRemove.id) {
+        item.quantity = 0
+      }
+      return item 
+    })
+    setRestaurant({...restaurant, products})
+    console.log(itemToRemove)
   }
 
   const quantityProduct = (products) => {
@@ -50,6 +73,11 @@ const RestaurantPage = () => {
       return products
     }
   }
+
+  // const updateProductsQuantity = () => {
+  //   const products = quantityProduct(restaurant.products) 
+
+  // }
 
   return (
     <>
@@ -67,6 +95,7 @@ const RestaurantPage = () => {
                 <CardCart
                   product={product}                 
                   addItemToCart={addItemToCart}
+                  removeItemToCart={removeItemToCart}
                 />
               );
             })}

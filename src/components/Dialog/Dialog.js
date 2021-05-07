@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -29,75 +29,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MaxWidthDialog() {
+export default function DialogCart({addItemToCart, product, open, setOpen, setQuantityCard}) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('sm');
+  const [quantify, setQuantify] = useState('0');
+  const [openDialog, setOpenDialog] = useState(open)
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  useEffect(() => {
+    setOpenDialog(open)
+  },[open])
 
   const handleClose = () => {
-    setOpen(false);
+    addItemToCart(product, Number(quantify))
+    setQuantityCard(Number(quantify))
+    setOpenDialog(false)
   };
 
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(event.target.value);
-  };
-
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
+  const handleQuantifyProduct = (event) => {    
+    setQuantify(event.target.value);
   };
 
   return (
     <React.Fragment>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open max-width dialog
-      </Button>
       <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="max-width-dialog-title"
+        open={openDialog}
       >
-        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
+          <DialogContentText color='black'>
+            Selecione a quantidade desejada
           </DialogContentText>
-          <form className={classes.form} noValidate>
             <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
               <Select
                 autoFocus
-                value={maxWidth}
-                onChange={handleMaxWidthChange}
+                value={quantify}
+                onChange={handleQuantifyProduct}
                 inputProps={{
                   name: 'max-width',
                   id: 'max-width',
                 }}
               >
-                <MenuItem value={false}>false</MenuItem>
-                <MenuItem value="xs">xs</MenuItem>
-                <MenuItem value="sm">sm</MenuItem>
-                <MenuItem value="md">md</MenuItem>
-                <MenuItem value="lg">lg</MenuItem>
-                <MenuItem value="xl">xl</MenuItem>
+                <MenuItem value={false}>0</MenuItem>
+                <MenuItem value="1">1</MenuItem>
+                <MenuItem value="2">2</MenuItem>
+                <MenuItem value="3">3</MenuItem>
+                <MenuItem value="4">4</MenuItem>
               </Select>
             </FormControl>
-            <FormControlLabel
-              className={classes.formControlLabel}
-              control={<Switch checked={fullWidth} onChange={handleFullWidthChange} />}
-              label="Full width"
-            />
-          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Close
+            Adicionar ao carrinho
           </Button>
         </DialogActions>
       </Dialog>
