@@ -6,10 +6,12 @@ import { useHistory } from "react-router-dom";
 import { login } from "../../services/API";
 import validateEmail from "../../constants/validateEmail";
 import Snackbar from '../../components/Snakbar/Snakbar'
+import {LinearProgressGlobal} from '../../GlobalStyle'
 const FormLogin = () => {
   const [form, onChange, resetForm] = useForm({ email: "", password: "" });
   const [error, setError] = useState({});
   const [snack, setSnack] = useState({text: "", sucess: false})
+  const [loading, setLoading] = useState(false)
 
   const history = useHistory();
   const handleClick = (event) => {
@@ -26,18 +28,19 @@ const FormLogin = () => {
     if (form.password === "") {
       currentError.password = "Senha não foi inserida";
     } else if (form.password.length < 6) {
-      currentError.password = "Senha precisa ter mais que 6 caracteres";
+      currentError.password = "Senha precisa ter no mínimo 6 caracteres";
     }
     setError({ ...currentError });
 
     if (Object.keys(currentError).length === 0) {
-      login(form, history, setSnack);
+      login(form, history, setSnack, setLoading);
     }
   };
 
   return (
     <div>
       <Form onSubmit={handleClick} labelButton="Entrar" title="Entrar">
+      
         <Input
           label="Email"
           placeholder="email@email.com"
@@ -58,6 +61,8 @@ const FormLogin = () => {
           required={true}
           error={error["password"]}
         />
+        {loading &&  <LinearProgressGlobal/>}
+        
       </Form>
       {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>

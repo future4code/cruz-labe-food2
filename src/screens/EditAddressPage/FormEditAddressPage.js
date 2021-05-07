@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import { updateAddress } from "../../services/API";
 import {useRequestData} from '../../hooks/useRequestData'
 import Snackbar from '../../components/Snakbar/Snakbar'
+import {LinearProgressGlobal} from '../../GlobalStyle'
+
 const FormEditAddressPage = () => {
   const [form, onChange, resetForm] = useForm({
     street: "",
@@ -19,7 +21,8 @@ const FormEditAddressPage = () => {
   const [address, setAddress] = useRequestData('profile/address', {})
   const [snack, setSnack] = useState({text: "", sucess: false})
   const history = useHistory();
-
+  const [loading, setLoading] = useState(false)
+  
   useEffect(()=> {
     if(Object.keys(address).length > 0){
       resetForm(address.address)
@@ -50,7 +53,7 @@ const FormEditAddressPage = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      updateAddress(form, history, setSnack)
+      updateAddress(form, history, setSnack, setLoading)
     }
   };
 
@@ -118,6 +121,7 @@ const FormEditAddressPage = () => {
           error={error["state"]}
           required={true}
         />
+            {loading &&  <LinearProgressGlobal/>}
       </Form>
       {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
     </div>

@@ -9,6 +9,7 @@ import validateEmail from '../../constants/validateEmail'
 import {useRequestData} from '../../hooks/useRequestData';
 import maskCPF from '../../constants/maskCPF' ;
 import Snackbar from '../../components/Snakbar/Snakbar'
+import {LinearProgressGlobal} from '../../GlobalStyle'
 
 const FormEditPersonalData = () => {
   const [form, onChange, resetForm] = useForm({
@@ -19,6 +20,8 @@ const FormEditPersonalData = () => {
   const [error, setError] = useState({});
   const [profile, setProfile] = useRequestData('profile', {})
   const [snack, setSnack] = useState({text: "", sucess: false})
+  const [loading, setLoading] = useState(false)
+
    useEffect(()=> {
      if(Object.keys(profile).length > 0){
       const profileUpdate = { ...profile.user };
@@ -53,7 +56,7 @@ const FormEditPersonalData = () => {
     setError({ ...currentError });
 
     if (Object.keys(currentError).length === 0) {
-      updateProfile(form, history, setSnack);
+      updateProfile(form, history, setSnack, setLoading);
     }
   };
 
@@ -90,6 +93,8 @@ const FormEditPersonalData = () => {
           error={error["cpf"]}
           required={true}
         />
+        
+          {loading &&  <LinearProgressGlobal/>}
       </Form>
       
       {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}

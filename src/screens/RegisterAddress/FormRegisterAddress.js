@@ -5,6 +5,7 @@ import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { addAddress } from "../../services/API";
 import Snackbar from '../../components/Snakbar/Snakbar'
+import {LinearProgressGlobal} from '../../GlobalStyle'
 
 const FormRegisterAddress = () => {
   const [form, onChange, resetForm] = useForm({
@@ -19,6 +20,7 @@ const FormRegisterAddress = () => {
   const [error, setError] = useState({});
   const history = useHistory();
   const [snack, setSnack] = useState({text: "", sucess: false})
+  const [loading, setLoading] = useState(false)
   const handleClick = (event) => {
     event.preventDefault();
     const currentError = {};
@@ -43,7 +45,7 @@ const FormRegisterAddress = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      addAddress(form, history, setSnack);
+      addAddress(form, history, setSnack, setLoading);
     }
   };
 
@@ -111,6 +113,7 @@ const FormRegisterAddress = () => {
           required={true}
         /> 
         {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
+        {loading &&  <LinearProgressGlobal/>}
       </Form>
     </div>
   );
