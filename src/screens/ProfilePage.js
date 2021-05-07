@@ -56,7 +56,7 @@ const ProfilePage = () => {
          
         </Order>
       </ProfileContainer>
-      <FooterMenu />
+      <FooterMenu currentPage="Profile"/>
     </>
   );
 };

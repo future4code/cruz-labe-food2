@@ -86,6 +86,7 @@ const HomePage = () => {
             {filteredRestaurants.map((restaurant) => {
               return <CardRestaurant restaurant={restaurant} />;
             })}
+            {busca === "" && <FooterMenu currentPage="Home"/>}
           </MainContainer>
         </>
       );
@@ -107,7 +108,7 @@ const HomePage = () => {
                 return <CardRestaurant restaurant={restaurant} />;
               })}
           </MainContainer>
-          <FooterMenu />
+          <FooterMenu currentPage="Home"/>
         </>
       );
     }
