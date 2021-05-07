@@ -1,28 +1,21 @@
 import styled from 'styled-components'
 
 export const MainFooter = styled.div`
-    width: 100%;
+    max-width: 100%;
+    width: 500px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     position: fixed;
     bottom: 1px;
-    border-top: 1px solid black;
+     border-top: 1px solid #B8B8B8;
     background-color: #ffffff;
-    left: 0;
     bottom: 0;
+    align-self: center;
+    left: 50%;
+    transform: translateX(-50%);
 `
-export const HomeButton = styled.div`
-    width: 7.5rem;
-    height: 3.062rem;
-    padding: 0.688rem 2.875rem 0.688rem 2.938rem;
-`
-export const CartButton = styled.div`
-    width: 7.5rem;
-    height: 3.062rem;
-    padding: 0.688rem 2.875rem 0.688rem 2.938rem;
-`
-export const ProfileButton = styled.div`
+export const IconButton = styled.div`
     width: 7.5rem;
     height: 3.062rem;
     padding: 0.688rem 2.875rem 0.688rem 2.938rem;
@@ -33,5 +26,6 @@ export const IconImage = styled.img`
     height: 1.688rem;
     object-fit: contain;
     fill: red;
+    cursor: pointer;
 ` 
   

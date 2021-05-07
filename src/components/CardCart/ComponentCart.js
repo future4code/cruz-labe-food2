@@ -112,7 +112,7 @@ const ComponentCart = (props) => {
                         </BotaoConfirma>
                     </DivBotaoConfirma>
                     
-                    <FooterMenu/>
+                    <FooterMenu currentPage="Cart"/>
         </MainContainer>
         
         )

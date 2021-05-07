@@ -87,7 +87,8 @@ export const History = styled.div`
   p{
   width: 100%;
   height: 1.125rem;
-  margin: 1rem 1rem 0.5rem;
+  margin: 1rem 0rem 0.5rem;
+  padding: 0 1rem;
   font-family: Roboto;
   font-size: 1rem;
   font-weight: normal;
