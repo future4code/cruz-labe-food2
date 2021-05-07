@@ -20,18 +20,35 @@ const RestaurantPage = () => {
   const [restaurant, setRestaurant] = useState({});
 
   useEffect(() => {
-    setRestaurant(data.restaurant);
+    let products =  data.restaurant && quantityProduct(data.restaurant.products)
+    setRestaurant({...data.restaurant, products});
   }, [data]);
 
-  const addItemToCart = (newItem) => {
+  const addItemToCart = (newItem, quantity) => {
     const index = cart.findIndex((i) => i.id === newItem.id)
     let newCart = [...cart]
     if (index === -1) {
-      newCart.push({ ...newItem, quantity: 1})
+      newCart.push({ ...newItem, quantity})
     } else {
-      newCart[index].quantity += 1 
+      newCart[index].quantity = quantity 
     }
     setCart(newCart)
+    console.log(newCart)
+    console.log(cart)
+  }
+
+  const quantityProduct = (products) => {
+    if (cart.length > 0) {
+      for (let product of products) {
+        for (let item of cart) {
+          if (product.id === item.id) {
+            product.quantity = item.quantity
+          }
+        }
+      } return products
+    } else {
+      return products
+    }
   }
 
   return (
@@ -48,10 +65,8 @@ const RestaurantPage = () => {
             restaurant.products.map((product) => {
               return (
                 <CardCart
-                  name={product.name}
-                  description={product.description}
-                  price={product.price}
-                  image={product.photoUrl}
+                  product={product}                 
+                  addItemToCart={addItemToCart}
                 />
               );
             })}

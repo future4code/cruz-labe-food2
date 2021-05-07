@@ -12,6 +12,7 @@ import radiobuttonChecked from '../../assets/radiobutton-checked.svg'
 const ComponentCart = (props) => {
     const [profile, setProfile] = useRequestData("profile", {});
     const { cart, setCart } = useContext(GlobalStateContext)
+    console.log(cart)
     const [priceToPay, setPriceToPay] = useState(0)
     let payment = 'creditcard'
 
@@ -42,6 +43,7 @@ const ComponentCart = (props) => {
     }
     setCart(newCart)
   }
+    console.log(cart)
     
     return(
         <MainContainer>
@@ -65,7 +67,7 @@ const ComponentCart = (props) => {
             </Tempo>
 
             {cart.length > 0 ? cart.map((product) => {
-                return <CardCart/> 
+                return <CardCart product={product}/> 
             })
             :
             <TextoVazio>

@@ -1,4 +1,7 @@
-import React from "react";
+import { PinDropSharp } from "@material-ui/icons";
+import React, { useContext, useState } from "react";
+import { useEffect } from "react";
+import GlobalStateContext from "../../global/GlobalStateContext";
 import {
   DivDetalhes,
   BotaoRemover,
@@ -14,34 +17,40 @@ import {
   DivFuncionalidades,
 } from "./Styled";
 
-const CardCart = ({ name, description, price, image, quantity }) => {
-  return (
+const CardCart = ({product, addItemToCart}) => {
+
+    return (
     <Item_card>
 
+      {product && 
       <Card>
 
-        <ImageDiv src={image} alt={name} />
+        <ImageDiv src={product.image} alt={product.name} />
 
         <DivDetalhes>
-          <NomeDoItem>{name}</NomeDoItem>
-          <DetalhePedido>{description}</DetalhePedido>
-          <Preco>R${price}</Preco>
+          <NomeDoItem>{product.name}</NomeDoItem>
+          <DetalhePedido>{product.description}</DetalhePedido>
+          <Preco>R${product.price}</Preco>
         </DivDetalhes>
 
         <DivFuncionalidades>
 
             <Quantidade>
-              <Numero>{quantity}</Numero>
+              <Numero>{product.quantity}</Numero>
             </Quantidade>
 
-            <BotaoRemover>
+            {/* <BotaoRemover>
               <Remover>remover</Remover>
+            </BotaoRemover> */}
+
+            <BotaoRemover onClick={() => addItemToCart(product, 1)}>
+              <Remover>adicionar</Remover>
             </BotaoRemover>
 
         </DivFuncionalidades>
 
       </Card>
-
+}
     </Item_card>
   );
 };
