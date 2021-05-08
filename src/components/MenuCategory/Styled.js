@@ -3,10 +3,12 @@ import styled from 'styled-components'
 export const CategoryContainer = styled.div`
     width: 100%;
     margin-top: 0.5rem;
+    cursor: pointer;
     display: flex;
     padding: .75rem 0;
     max-width: 100%;
     overflow: auto;
+
     -ms-overflow-style: none;
     scrollbar-width: none;
     ::-webkit-scrollbar {

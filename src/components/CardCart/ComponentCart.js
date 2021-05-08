@@ -1,111 +1,143 @@
-import React, { useContext, useEffect, useState } from 'react'
-import FooterMenu from '../FooterMenu/FooterMenu'
-import MenuHeader from '../MenuHeader/MenuHeader'
-import MainContainer from '../../components/MainContainer/MainContainer'
-import CardCart from './CardCart'
-import {Rectangle, DivBotaoConfirma, FormaPagamento, DivPrecos, Endereco_entrega, Rua_cliente, Restaurante, Rua_restaurante, Tempo,  Frete, PrecoSubtotal, Subtotal, OpcaoPagamento, RadiobuttonUnchecked, RadiobuttonChecked, Fill, BotaoConfirma, TextoVazio, DivRadio, Container, DivPadding} from './Styled'
-import { useRequestData } from '../../hooks/useRequestData'
-import GlobalStateContext from '../../global/GlobalStateContext'
-import {LinearProgressGlobal} from '../../GlobalStyle'
+import React, { useContext } from "react";
+import FooterMenu from "../FooterMenu/FooterMenu";
+import MenuHeader from "../MenuHeader/MenuHeader";
+import CardCart from "./CardCart";
+import maskMoney from "../../constants/maskMoney";
+import {
+  Rectangle,
+  DivConfirmButton,
+  PaymentMethod,
+  DivPrice,
+  DeliveryAddress,
+  CustomerStreet,
+  Restaurant,
+  RestaurantStreet,
+  DeliveryTime,
+  Shipping,
+  SubtotalPrice,
+  Subtotal,
+  PaymentOptions,
+  RadiobuttonChecked,
+  ConfirmButton,
+  EmptyText,
+  DivRadio,
+  Container,
+  DivPadding,
+} from "./Styled";
+import { useRequestData } from "../../hooks/useRequestData";
+import GlobalStateContext from "../../global/GlobalStateContext";
+import { LinearProgressGlobal } from "../../GlobalStyle";
 
-const ComponentCart = ({onChangePaymentMethod, onClickConfim, paymentMethod, loading}) => {
-    const [profile, setProfile] = useRequestData("profile", {});
-    const { cart, setCart, restaurantDetail } = useContext(GlobalStateContext)
-    console.log(cart)
-    const [priceToPay, setPriceToPay] = useState(0)
-    let payment = 'creditcard'
+const ComponentCart = ({
+  onChangePaymentMethod,
+  onClickConfim,
+  paymentMethod,
+  loading,
+}) => {
+  const [profile] = useRequestData("profile", {});
+  const { cart, restaurantDetail } = useContext(GlobalStateContext);
+  // const [priceToPay, setPriceToPay] = useState(0);
 
-    useEffect(() => {
-    let currentTotal = 0
-    cart.forEach((product) => {
-      currentTotal += product.price * product.quantity
-    })
-    setPriceToPay()
-  })
+  // let payment = "creditcard";
 
-    console.log(restaurantDetail)
-    
-    return(
-        <Container>
-            <MenuHeader currentPageLabel='Meu Carrinho'/>
-            <Rectangle>
-                <Endereco_entrega>
-                    Endereço de entrega
-                </Endereco_entrega>
-                <Rua_cliente>
-                    {profile.user && profile.user.address}
-                </Rua_cliente>   
-            </Rectangle>
-            <Restaurante>
-                   {restaurantDetail.name}
-            </Restaurante>    
-            <Rua_restaurante>
-                 {restaurantDetail.address}
-            </Rua_restaurante>
-            <Tempo>
-            {restaurantDetail.deliveryTime} min
-            </Tempo>
+  // useEffect(() => {
+  //   let currentTotal = 0;
+  //   cart.forEach((product) => {
+  //     currentTotal += product.price * product.quantity;
+  //   });
+  //   setPriceToPay();
+  // });
+  
+  const calTotalPrice = () => {
+    const totalPrice = cart.reduce((acc, item) => {
+      return (acc += item.price);
+    }, 0)
 
-            {cart.length > 0 ? cart.map((product) => {
-                return <CardCart product={product}/> 
-            })
-            :
-            <TextoVazio>
-                Carrinho Vazio
-            </TextoVazio>} 
-<DivPadding>
-            {restaurantDetail && 
-                    <Frete>
-                        Frete R$ {restaurantDetail.shipping} 
-                    </Frete>}
-                    <DivPrecos>
-                        <Subtotal>
-                            SUBTOTAL
-                        </Subtotal>
-                        <PrecoSubtotal>
-                            R$ {cart.reduce((acc,item) => {
-                                return acc += item.price
-                            }, 0) + restaurantDetail.shipping}
-                        </PrecoSubtotal>
-                    </DivPrecos>
-                    <FormaPagamento>
-                        Pagamento
-                        <hr/>
-                    </FormaPagamento>
-                    <OpcaoPagamento>
-                        <DivRadio>
-                            <RadiobuttonChecked name='teste' type='radio'
-                                onClick={() => onChangePaymentMethod('money')}
-                                value='money'
-                                checked={paymentMethod === 'money'}
-                                />
-                               
-                        </DivRadio>
-                                Dinheiro
-                    </OpcaoPagamento>
+    if (totalPrice > 0) return totalPrice + restaurantDetail.shipping 
+    return 0
+  }
 
-                    <OpcaoPagamento>
-                        <DivRadio>
-                            <RadiobuttonChecked name='teste' type='radio' 
-                         onClick={() => onChangePaymentMethod('creditcard')}
-                            value='creditcard'
-                            checked={paymentMethod === 'creditcard'}
-                            />
-                        </DivRadio>
-                        Cartão
-                    </OpcaoPagamento>
-                  
-                    <DivBotaoConfirma onClick={onClickConfim}>  
-                     {loading &&  <LinearProgressGlobal/>}
-                        <BotaoConfirma >
-                            Confirma
-                        </BotaoConfirma>
-                    </DivBotaoConfirma>
-                    </DivPadding>
-                    <FooterMenu currentPage="Cart"/>
-        </Container>
-        
-        )
-}
+  return (
+    <Container>
+      <MenuHeader currentPageLabel="Meu Carrinho" />
+      <Rectangle>
+        <DeliveryAddress>Endereço de entrega</DeliveryAddress>
+        <CustomerStreet>{profile.user && profile.user.address}</CustomerStreet>
+      </Rectangle>
 
-export default ComponentCart
+      {restaurantDetail && restaurantDetail.name && (
+        <>
+          <Restaurant>{restaurantDetail.name}</Restaurant>
+          <RestaurantStreet>{restaurantDetail.address}</RestaurantStreet>
+          <DeliveryTime>{restaurantDetail.deliveryTime} min</DeliveryTime>
+        </>
+      )}
+
+      {cart.length > 0 ? (
+        cart.map((product) => {
+          return <CardCart product={product} />;
+        })
+      ) : (
+        <EmptyText>Carrinho Vazio</EmptyText>
+      )}
+      <DivPadding>
+        {restaurantDetail && (
+          <Shipping>
+            Frete R$
+            {restaurantDetail &&
+            restaurantDetail.shipping &&
+            restaurantDetail.shipping > 0
+              ? maskMoney(restaurantDetail.shipping)
+              : "00,00"}
+          </Shipping>
+        )}
+        <DivPrice>
+          <Subtotal>SUBTOTAL</Subtotal>
+          <SubtotalPrice>
+            R$
+            {restaurantDetail &&
+            restaurantDetail.shipping &&
+              calTotalPrice() > 0 ? maskMoney(calTotalPrice()) : "00,00"}
+          </SubtotalPrice>
+        </DivPrice>
+        <PaymentMethod>
+          Pagamento
+          <hr />
+        </PaymentMethod>
+        <PaymentOptions>
+          <DivRadio>
+            <RadiobuttonChecked
+              name="teste"
+              type="radio"
+              onClick={() => onChangePaymentMethod("money")}
+              value="money"
+              checked={paymentMethod === "money"}
+            />
+          </DivRadio>
+          Dinheiro
+        </PaymentOptions>
+
+        <PaymentOptions>
+          <DivRadio>
+            <RadiobuttonChecked
+              name="teste"
+              type="radio"
+              onClick={() => onChangePaymentMethod("creditcard")}
+              value="creditcard"
+              checked={paymentMethod === "creditcard"}
+            />
+          </DivRadio>
+          Cartão
+        </PaymentOptions>
+
+        <DivConfirmButton onClick={onClickConfim}>
+          {loading && <LinearProgressGlobal />}
+          <ConfirmButton>Confirma</ConfirmButton>
+        </DivConfirmButton>
+      </DivPadding>
+      <FooterMenu currentPage="Cart" />
+    </Container>
+  );
+};
+
+export default ComponentCart;
