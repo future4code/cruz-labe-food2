@@ -16,4 +16,20 @@ export const Main = styled.div`
         padding: 0.75rem 0;
         margin-top: 0.5rem;
     }
+
+    .classCardDetails {
+        border: none;
+
+        > div {
+            padding: 0.25rem 0;
+
+            > div {
+                justify-content: flex-start;
+
+                p:last-child {
+                    margin-left: 0.5rem;
+                }
+            }
+        }
+    }
 `

@@ -37,7 +37,7 @@ export const Bar = styled.div`
     background-color: #ffffff;
 `
 
-export const Endereco_entrega = styled.div`
+export const DeliveryAddress = styled.div`
     width: 100%/*20.5rem*/;
     height: 1.125rem;
     margin: 0 0 0.5rem;
@@ -51,7 +51,7 @@ export const Endereco_entrega = styled.div`
     color: #b8b8b8;
 `
 
-export const Rua_cliente = styled.div`
+export const CustomerStreet = styled.div`
     width: 100%/*20.5rem*/;
     height: 1.125rem;
     margin: 0.5rem 0 0;
@@ -65,7 +65,7 @@ export const Rua_cliente = styled.div`
     color: var(--black);
 `
 
-export const Restaurante = styled.div`
+export const Restaurant = styled.div`
     width: 100%/*20.5rem*/;
     height: 1.125rem;
     margin: 1rem 1rem 0.5rem;
@@ -79,7 +79,7 @@ export const Restaurante = styled.div`
     color: #e8222e;
 `
 
-export const Rua_restaurante = styled.div`
+export const RestaurantStreet = styled.div`
     width: 100%/*20.5rem*/;
     height: 1.125rem;
     margin: 0.5rem 1rem;
@@ -93,7 +93,7 @@ export const Rua_restaurante = styled.div`
     color: #b8b8b8;
 `
 
-export const Tempo = styled.div`
+export const DeliveryTime = styled.div`
     width: 100%/*20.5rem*/;
     height: 1.125rem;
     margin: 0.5rem 1rem;
@@ -107,7 +107,7 @@ export const Tempo = styled.div`
     color: #b8b8b8;
 `
 
-export const Item_card = styled.div`
+export const ItemCard = styled.div`
     width: 100%/*20.5rem*/;
     height: 7.5rem;
     margin: 0.5rem 0 0;
@@ -116,22 +116,32 @@ export const Item_card = styled.div`
 
 export const Card = styled.div`
     width: 100%/*20.5rem*/;
+    min-height: 7rem;
     height: 7rem;
+    max-height: 7rem;
+    max-height: 7rem;
+    box-sizing: border-box;
     border-radius: 8px;
     border: solid 1px #b8b8b8;
     display: flex;
     position: relative;
 `
 
-export const ImageDiv = styled.img`
-    width: 6rem;
-    height: 7rem;
-    margin: 0 1rem 0 0;
-    object-fit: contain;
+export const ImageDiv = styled.div`
+    min-width: 6rem;
+    max-width: 6rem;
+    min-height: 7rem;
+
+    img {
+        width: 100%;
+        height: 98%;
+        border-radius: 8px 0 0 8px;
+    }
 `
 
-export const NomeDoItem = styled.div`
-    width: 10.438rem;
+export const ItemName = styled.div`
+    /* width: 10.438rem; */
+    width: 78%;
     height: 1.125rem;
     margin: 1.125rem 1rem 0.5rem;
     font-family: Roboto;
@@ -141,13 +151,17 @@ export const NomeDoItem = styled.div`
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.39px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     color: #e8222e;
 ` 
 
-export const DetalhePedido = styled.div`
+export const DetailsOrder = styled.div`
     width: 12.5rem;
-    height: 1.875rem;
-    margin: 0.5rem 1rem 0.25rem;
+    width: 100%;
+    max-height: 1.875rem;
+    margin: 0.5rem 1rem;
     font-family: Roboto;
     font-size: 0.75rem;
     font-weight: normal;
@@ -157,7 +171,7 @@ export const DetalhePedido = styled.div`
     letter-spacing: -0.29px;
     color: #b8b8b8;
 `
-export const Preco = styled.div`
+export const Price = styled.div`
     width: 7.375rem;
     height: 1.188rem;
     margin: 0.25rem 0.5rem 0.938rem 1rem;
@@ -171,12 +185,12 @@ export const Preco = styled.div`
     color: var(--black);
 `
 
-export const DivDetalhes = styled.div`
+export const DivDetails = styled.div`
     display: flex;
     flex-direction: column;
 `
 
-export const BotaoRemover = styled.div`
+export const RemoveButton = styled.div`
     width: 5.625rem;
     height: 1.938rem;
     margin: /*0.438rem*/ 2.2rem 0 0 0.5rem /*0.5rem*/;
@@ -198,13 +212,13 @@ export const TextButton = styled.h1`
     text-align: center;
     color: #e02020;
 `
-export const BotaoAdicinar = styled(BotaoRemover)`
+export const AddButton = styled(RemoveButton)`
     border: solid 1px black;
     >h1{
         color: black;
     }
 `
-export const Quantidade = styled.div`
+export const Quantity = styled.div`
     width: 2.063rem;
     height: 2.063rem;
     margin: 0 0 0.688rem 4.05rem /*1rem*/;
@@ -213,7 +227,7 @@ export const Quantidade = styled.div`
     border: solid 1px #e8222e;
 `
 
-export const Numero = styled.div`
+export const Number = styled.div`
     width: 0.563rem;
     height: 1.188rem;
     font-family: Roboto;
@@ -227,18 +241,21 @@ export const Numero = styled.div`
     color: #e8222e;
 `
 
-export const DivFuncionalidades = styled.div`
+export const DivFunctionalities = styled.div`
     display: flex;
+    min-height: 7rem;
     flex-direction: column;
+    justify-content: flex-end;
     position: absolute;
     top: 0;
     right: 0;
+    padding-bottom: 1px;
 `
 
-export const Frete = styled.div`
-    width: 6.5rem;
+export const Shipping = styled.div`
+    width: 100%;
     height: 1.125rem;
-    margin: 1rem 1rem 0.813rem 3.75rem;
+    margin: 1rem 1rem 0.813rem 0rem;
     font-family: Roboto;
     font-size: 1rem;
     font-weight: normal;
@@ -250,7 +267,7 @@ export const Frete = styled.div`
     color: var(--black);
 `
 
-export const PrecoSubtotal = styled.div`
+export const SubtotalPrice = styled.div`
     width: /*10.25rem*/100%;
     height: 1.313rem;
     margin: 0.813rem 1rem 1.5rem 0;
@@ -279,11 +296,11 @@ export const Subtotal =styled.div`
     color: var(--black);
 `
 
-export const DivPrecos = styled.div`
+export const DivPrice = styled.div`
     display:flex; 
 `
 
-export const FormaPagamento = styled.div`
+export const PaymentMethod = styled.div`
     width: 90%/*20.5rem*/;
     height: 1.125rem;
     margin: 1.5rem 1rem 0.5rem;
@@ -297,7 +314,7 @@ export const FormaPagamento = styled.div`
     color: var(--black);
 ` 
 
-export const OpcaoPagamento = styled.div`
+export const PaymentOptions = styled.div`
     width: 18.5rem;
     height: /*1.125rem*/2rem;
     margin: 0.688rem 1rem 0.688rem 0.5rem;
@@ -317,13 +334,6 @@ export const DivRadio = styled.div`
     margin-top: 0.5rem;
 `
 
-export const RadiobuttonUnchecked = styled.img`
-    width: 1.5rem;
-    height: 1.5rem;
-    margin: 0.5rem 0.5rem 0.5rem 1rem;
-    object-fit: contain;
-`
-
 export const RadiobuttonChecked = styled.input`
     width: 1.5rem;
     height: 1.5rem;
@@ -331,20 +341,14 @@ export const RadiobuttonChecked = styled.input`
     object-fit: contain;
 `
 
-export const Fill = styled.img`
-    width: 0.625rem;
-    height: 0.625rem;
-    background-color: var(--black);
-`
-
-export const DivBotaoConfirma = styled.div`
+export const DivConfirmButton = styled.div`
     width: 100%/*20.5rem*/;
  
     margin-top: 2rem; //acrescentei
     
 `
 
-export const BotaoConfirma=styled.button`
+export const ConfirmButton =styled.button`
    border-radius: 2px;
     width: 100%/*18.5rem*/;
     height: 2.625rem;
@@ -361,8 +365,8 @@ export const BotaoConfirma=styled.button`
     border: none;
 ` 
 
-export const TextoVazio = styled.div`
-    width: 18.5rem;
+export const EmptyText = styled.div`
+    width: 100%;
     height: 1.125rem;
     opacity: 0.89;
     font-family: Roboto;
@@ -374,6 +378,7 @@ export const TextoVazio = styled.div`
     letter-spacing: -0.39px;
     text-align: center;
     color: var(--black);
+    padding: 0.75rem 0;
 `
   
   export const Container  = styled.div`

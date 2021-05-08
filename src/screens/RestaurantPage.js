@@ -63,7 +63,7 @@ useEffect(()=>{
       <MenuHeader isGoBack currentPageLabel="Restaurante" />
       <MainContainer>
         {restaurant && restaurant.name && (
-          <CardRestaurant hasDatails restaurant={restaurant} />
+          <CardRestaurant classCardDetails='classCardDetails' hasDatails restaurant={restaurant} />
         )}
         <SectionDetails labelTitle="Principais">
           {product &&

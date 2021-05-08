@@ -3,13 +3,11 @@ import { useHistory } from 'react-router-dom'
 import { Banner, Card, ContainerInfo, Name } from "./Styled";
 import { goToRestaurant } from '../../Routes/Coordinators'
 import maskMoney from '../../constants/maskMoney'
-export default function CardRestaurant({ restaurant, hasDatails }) {
+export default function CardRestaurant({ restaurant, hasDatails, classCardDetails }) {
   const history = useHistory()
 
-  // console.log(restaurant);
-
   return (
-    <Card onClick={() => goToRestaurant(history, restaurant.id)} hasDatails={hasDatails}>
+    <Card className={classCardDetails} onClick={() => goToRestaurant(history, restaurant.id)} hasDatails={hasDatails}>
       <Banner src={restaurant.logoUrl} />
       <ContainerInfo>
         <Name>{restaurant.name}</Name>
