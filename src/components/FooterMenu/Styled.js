@@ -28,4 +28,3 @@ export const IconImage = styled.img`
     fill: red;
     cursor: pointer;
 ` 
-  

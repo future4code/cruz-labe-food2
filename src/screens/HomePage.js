@@ -7,47 +7,48 @@ import { useRequestData } from "../hooks/useRequestData";
 import CardRestaurant from "../components/CardRestaurant/CardRestaurant";
 import FooterMenu from "../components/FooterMenu/FooterMenu";
 import MenuCategory from "../components/MenuCategory/MenuCategory";
-import { goToHome } from "../Routes/Coordinators";
+import CardOrderInProgress from '../components/CardOrderInProgress/CardOrderInProgress';
 
 const HomePage = () => {
-  // useProtectedPage()
-  const [data, updateData] = useRequestData("restaurants", {});
-  const [restaurants, setRestaurants] = useState([]);
+   useProtectedPage()
+  const [restaurants, updateRestaurants] = useRequestData("restaurants", {});
   const [busca, setBusca] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [order, updateOrder] = useRequestData("active-order", {});
 
-  useEffect(() => {
-    setRestaurants(data.restaurants);
-  }, [data]);
+  setInterval(() => {
+    updateOrder()
+  }, 60000)
 
   const filter = () => {
-    if (!(restaurants === undefined)) {
-      console.log("filter", selectCategory);
-      const filtered = restaurants
-        .filter((restaurant) => {
-          return restaurant.name.toLowerCase().includes(busca.toLowerCase());
-        })
-        .filter((restaurant) => {
-          return !selectCategory || restaurant.category === selectCategory;
-        });
-      setFilteredRestaurants([...filtered]);
+    if (restaurants && restaurants.restaurants && restaurants.restaurants.length >0) {
+       const filtered = restaurants.restaurants
+         .filter((restaurant) => {
+           return restaurant.name.toLowerCase().includes(busca.toLowerCase());
+         })
+         .filter((restaurant) => {
+           return !selectCategory || restaurant.category === selectCategory;
+         });
+       setFilteredRestaurants([...filtered]);
     }
   };
-
+console.log("order", order)
   useEffect(() => {
     filter();
   }, [selectCategory, busca]);
 
   const filterCategorys = () => {
+    if(restaurants.restaurants && restaurants.restaurants.length){
     let categorys = [];
     // console.log(restaurants)
-    restaurants.forEach((restaurant) => {
+    restaurants.restaurants.forEach((restaurant) => {
       if (categorys.indexOf(restaurant.category) === -1) {
         categorys.push(restaurant.category);
       }
     });
     return categorys;
+  }
   };
 
   const backHome = () => {
@@ -55,6 +56,7 @@ const HomePage = () => {
   };
 
   const handleCategory = (category) => {
+    console.log("currentCategoryHome", selectCategory)
     if (category === selectCategory) {
       setSelectCategory("");
     } else {
@@ -77,8 +79,8 @@ const HomePage = () => {
             <InputSearch updateBusca={setBusca} value={busca} />
             {busca === "" && (
               <MenuCategory
-                currentCategoty={selectCategory}
-                selectCategory={handleCategory}
+              currentCategoty={selectCategory}
+                handleCategory={handleCategory}
                 categorys={filterCategorys()}
               />
             )}
@@ -86,8 +88,11 @@ const HomePage = () => {
             {filteredRestaurants.map((restaurant) => {
               return <CardRestaurant restaurant={restaurant} />;
             })}
+              {order && order.order && <CardOrderInProgress name={order.order.restaurantName} subtotal={order.order.totalPrice}/>} 
             {busca === "" && <FooterMenu currentPage="Home"/>}
+          
           </MainContainer>
+         
         </>
       );
     } else {
@@ -96,18 +101,20 @@ const HomePage = () => {
           <MenuHeader currentPageLabel="Ifuture" />
           <MainContainer>
             <InputSearch updateBusca={setBusca} value={busca} />
-            {restaurants && restaurants.length > 0 && (
+            {restaurants && restaurants.restaurants && restaurants.restaurants.length > 0 && (
               <MenuCategory
-                selectCategory={handleCategory}
-                categorys={filterCategorys()}
+              currentCategoty={selectCategory}
+              handleCategory={handleCategory}
+              categorys={filterCategorys()}
               />
             )}
-            {restaurants &&
-              restaurants.length > 0 &&
-              restaurants.map((restaurant) => {
+            {restaurants && restaurants.restaurants &&
+              restaurants.restaurants.length > 0 &&
+              restaurants.restaurants.map((restaurant) => {
                 return <CardRestaurant restaurant={restaurant} />;
               })}
           </MainContainer>
+        {order && order.order && <CardOrderInProgress name={order.order.restaurantName} subtotal={order.order.totalPrice}/>}
           <FooterMenu currentPage="Home"/>
         </>
       );

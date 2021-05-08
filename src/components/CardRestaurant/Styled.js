@@ -8,6 +8,7 @@ export const Card = styled.div`
     border: solid 1px #b8b8b8;
     margin-top: 0.5rem;
     box-sizing: border-box;
+    
 `
 
 export const Banner = styled.img`
@@ -17,7 +18,7 @@ export const Banner = styled.img`
 `
 
 export const ContainerInfo = styled.div`
-  padding: 0.25rem ${props => props.hasDetails ? 1 : 0} rem;
+  /* padding: 0.25rem ${props => props.hasDetails ? 1 : 0} rem; */
   font-family: Roboto;
   font-size: 1rem;
   font-weight: normal;
@@ -26,6 +27,7 @@ export const ContainerInfo = styled.div`
   line-height: normal;
   letter-spacing: -0.39px;
   color: #b8b8b8;
+  padding: 0 1rem;
 
   p {
       margin: 0.25rem 0;

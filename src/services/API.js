@@ -104,3 +104,35 @@ export const updateAddress = (body, history, setSnack, setLoading) => {
 export const addAddress = (body, history, setSnack, setLoading) => {
     putAddress(body, history, goToHome, setSnack, setLoading)
 }
+
+export const placeOrder = (products, paymentMethod, restaurantId, setCart, setRestaurant, setSnack, setLoading) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+    setLoading(true)
+    setSnack({text: ""})
+    const body = {
+        products,
+        paymentMethod
+    }
+    axios.post(`${BASE_URL}restaurants/${restaurantId}/order`, body, {
+    headers: {
+        auth: user.token
+    }
+})
+.then((res)=> {
+    console.log(res)
+    setCart([]) 
+    setLoading(false)
+    setRestaurant({})
+    setSnack(
+        {text: "Pedido enviado com sucesso!",
+        sucess: true
+    })
+}).catch((err)=>{
+    console.log(err)
+    setLoading(false)
+    setSnack(
+        {text: "Não foi possível fazer seu pedido. Tente novamente!",
+        sucess: false
+    })
+})
+}

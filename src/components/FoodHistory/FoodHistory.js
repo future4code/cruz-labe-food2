@@ -1,6 +1,7 @@
 import React from 'react';
 import {HistoryContainer, Restaurants, Date, Subtotal} from './Styled';
-
+import maskDate from '../../constants/maskDate'
+import maskMoney from '../../constants/maskMoney'
 const FoodHistory = ({title, date, subtotal}) => {
   return (
     <HistoryContainer>
@@ -8,10 +9,10 @@ const FoodHistory = ({title, date, subtotal}) => {
         {title}
       </Restaurants>
       <Date>
-        {date}
+        {maskDate(date)}
       </Date>
       <Subtotal>
-      {subtotal}
+      subtotal: R$ {maskMoney(subtotal)}
       </Subtotal>
     </HistoryContainer>
   )

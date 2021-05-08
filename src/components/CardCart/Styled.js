@@ -183,9 +183,9 @@ export const BotaoRemover = styled.div`
     padding: 0.5rem 1.438rem 0.563rem 1.5rem;
     border-radius: 8px 0 8px 0;
     border: solid 1px #e02020;
+    cursor: pointer;
 `
-
-export const Remover = styled.div`
+export const TextButton = styled.h1`
     width: 2.688rem;
     height: 0.875rem;
     font-family: Roboto;
@@ -198,7 +198,12 @@ export const Remover = styled.div`
     text-align: center;
     color: #e02020;
 `
-
+export const BotaoAdicinar = styled(BotaoRemover)`
+    border: solid 1px black;
+    >h1{
+        color: black;
+    }
+`
 export const Quantidade = styled.div`
     width: 2.063rem;
     height: 2.063rem;
@@ -334,16 +339,15 @@ export const Fill = styled.img`
 
 export const DivBotaoConfirma = styled.div`
     width: 100%/*20.5rem*/;
-    height: 2.625rem;
-    padding: 0.75rem 1rem;
-    border-radius: 2px;
-    background-color: #e8222e;
+ 
     margin-top: 2rem; //acrescentei
+    
 `
 
 export const BotaoConfirma=styled.button`
+   border-radius: 2px;
     width: 100%/*18.5rem*/;
-    height: 1.125rem;
+    height: 2.625rem;
     font-family: Roboto;
     font-size: 1rem;
     font-weight: normal;
@@ -372,25 +376,11 @@ export const TextoVazio = styled.div`
     color: var(--black);
 `
   
-  
-  
-  
-  
-  
-  
-  
-
-
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-
-  
-
+  export const Container  = styled.div`
+    width: 100%;
+    margin-bottom: 3.062rem;
+  `
+    export const DivPadding = styled.div`
+    width: 100%;
+    padding: 1rem;
+       `

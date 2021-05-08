@@ -18,10 +18,11 @@ import {goToEditAddress, goToEditProfile} from '../Routes/Coordinators'
 import FoodHistory from "../components/FoodHistory/FoodHistory";
 
 const ProfilePage = () => {
+  const [ordersHistory, setOrdersHistory] = useRequestData("orders/history", {});
   const [profile, setProfile] = useRequestData("profile", {});
+  
   const history = useHistory();
-  const [orders, setOrders] = useState([]);
-
+    console.log("History", ordersHistory)
   return (
     <>
       <MenuHeader currentPageLabel={"Meu Perfil"} isGoBack={true} />
@@ -48,8 +49,8 @@ const ProfilePage = () => {
           <Line />
         </History>
         <Order>
-         { orders.length > 0 ? orders.map((order) => {
-         return <FoodHistory title="título" date="data" subtotal="subtotal" /> 
+         {ordersHistory.orders && ordersHistory.orders.length > 0 ? ordersHistory.orders.map((order) => {
+         return <FoodHistory title={order.restaurantName} date={order.createdAt} subtotal={order.totalPrice} /> 
          })
          :
          <p>Você não realizou nenhum pedido</p>} 

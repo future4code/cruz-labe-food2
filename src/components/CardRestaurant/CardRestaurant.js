@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from 'react-router-dom'
 import { Banner, Card, ContainerInfo, Name } from "./Styled";
 import { goToRestaurant } from '../../Routes/Coordinators'
-
+import maskMoney from '../../constants/maskMoney'
 export default function CardRestaurant({ restaurant, hasDatails }) {
   const history = useHistory()
 
@@ -19,10 +19,7 @@ export default function CardRestaurant({ restaurant, hasDatails }) {
             {restaurant.deliveryTime - 10} - {restaurant.deliveryTime} min
           </p>
           <p>
-            Frete R${parseFloat(restaurant.shipping.toFixed(2)).toLocaleString('pt-BR', {
-                currency: 'BRL',
-                minimumFractionDigits: 2
-            })}
+            Frete R${maskMoney(restaurant.shipping)}
           </p>
         </div>
         {hasDatails && <p>{restaurant.address}</p>}

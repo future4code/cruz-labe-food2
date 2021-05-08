@@ -6,50 +6,57 @@ import { useRequestData } from "../hooks/useRequestData";
 import { useParams } from "react-router-dom";
 import SectionDetails from "../components/SectionDetails/SectionDetails";
 import CardCart from "../components/CardCart/CardCart";
-import { SettingsApplicationsRounded } from "@material-ui/icons";
 import GlobalStateContext from "../global/GlobalStateContext";
 
 const RestaurantPage = () => {
   // useProtectedPage()
-  const { cart, setCart } = useContext(GlobalStateContext)
-  const params = useParams();
+  const params = useParams();  
+  const { cart } = useContext(GlobalStateContext)
+  const [product, setProduct] = useState([])
   const [data, updateData] = useRequestData(
     `restaurants/${params.restaurantId}`,
     {}
   );
   const [restaurant, setRestaurant] = useState({});
+useEffect(()=>{
+  if(data && data.restaurant){
+    setRestaurant(data.restaurant)
+  }
+}, [data])
+
+  const updateProduct = (pro) =>{
+   
+        const productsCurrent =  pro.map((productCurrent) => {
+         const index = cart.findIndex((cartProduct) => {
+             return cartProduct.id === productCurrent.id
+           })
+         if(index > -1){
+           const productQuantity = {...productCurrent, quantity: cart[index].quantity}
+         
+           return (productQuantity)
+         }
+         else{
+          const productQuantity = {...productCurrent, quantity:0}
+           return (productQuantity)
+         }
+        })
+        console.log("oi",productsCurrent)
+        setProduct(productsCurrent)
+  }
+
+  
 
   useEffect(() => {
-    let products =  data.restaurant && quantityProduct(data.restaurant.products)
-    setRestaurant({...data.restaurant, products});
+    if(data.restaurant &&  data.restaurant.products){
+   
+    updateProduct(data.restaurant.products)
+  }
   }, [data]);
-
-  const addItemToCart = (newItem, quantity) => {
-    const index = cart.findIndex((i) => i.id === newItem.id)
-    let newCart = [...cart]
-    if (index === -1) {
-      newCart.push({ ...newItem, quantity})
-    } else {
-      newCart[index].quantity = quantity 
-    }
-    setCart(newCart)
-    console.log(newCart)
-    console.log(cart)
+  useEffect(() => {
+    if(product){
+      updateProduct(product)
   }
-
-  const quantityProduct = (products) => {
-    if (cart.length > 0) {
-      for (let product of products) {
-        for (let item of cart) {
-          if (product.id === item.id) {
-            product.quantity = item.quantity
-          }
-        }
-      } return products
-    } else {
-      return products
-    }
-  }
+  }, [cart]);
 
   return (
     <>
@@ -59,21 +66,18 @@ const RestaurantPage = () => {
           <CardRestaurant hasDatails restaurant={restaurant} />
         )}
         <SectionDetails labelTitle="Principais">
-          {restaurant &&
-            restaurant.products &&
-            restaurant.products.length > 0 &&
-            restaurant.products.map((product) => {
+          {product &&
+            product.map((product) => {
               return (
                 <CardCart
-                  product={product}                 
-                  addItemToCart={addItemToCart}
+                  product={product}
+                  restaurant={restaurant}
                 />
               );
             })}
           <CardCart />
         </SectionDetails>
       </MainContainer>
-      <div>Detalhe Resturante</div>
     </>
   );
 };
