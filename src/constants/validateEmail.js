@@ -10,7 +10,7 @@ const validateEmail = (field) => {
          (usuario.search(" ")===-1) &&
          (dominio.search(" ")===-1) &&
          (dominio.search(".")!==-1) &&
-         (dominio.indexOf(".") >=1)&&
+         (dominio.indexOf(".") >=1) &&
          (dominio.lastIndexOf(".") < dominio.length - 1)
         ) {
             return true
