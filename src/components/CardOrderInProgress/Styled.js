@@ -4,28 +4,63 @@ export const MainFooter = styled.div`
     max-width: 100%;
     width: 500px;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
     position: fixed;
     bottom: 1px;
-     border-top: 1px solid #B8B8B8;
     background-color: #e8222e;
-    bottom: 0;
     align-self: center;
     left: 50%;
     transform: translateX(-50%);
-    height: 6.062rem;
-`
-export const IconButton = styled.div`
-    width: 7.5rem;
-    height: 3.062rem;
-    padding: 0.688rem 2.875rem 0.688rem 2.938rem;
+    height:  7.375rem;
+    margin-bottom: 3.062rem;
 `
 
-export const IconImage = styled.img`
-    width: 1.688rem;
-    height: 1.688rem;
-    object-fit: contain;
-    fill: red;
-    cursor: pointer;
-` 
+export const  Title = styled.h3`
+  font-family: Montserrat;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: white;
+  margin: 0.25rem 0;
+`
+export const NameRestaurant = styled.h5`
+margin: 0.25rem 0;
+  font-family: Montserrat;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+`
+export const Subtotal = styled.h4`
+margin: 0.25rem 0;
+ font-family: Montserrat;
+  font-size: 1rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.39px;
+  color: black;
+  text-transform: uppercase;
+`
+
+export const IconClock = styled.img`
+width: 2rem;
+height: 2rem;
+margin: 1.5rem;
+`
+export const DivIcon = styled.div`
+ display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+`
+export const DivInformation = styled.div`
+ display: flex;
+    justify-content: center;
+    flex-direction: column;
+`

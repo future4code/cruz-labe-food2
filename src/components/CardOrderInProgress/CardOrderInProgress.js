@@ -1,15 +1,18 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { goToCart, goToHome, goToProfile } from '../../Routes/Coordinators';
-import { IconButton, IconImage, MainFooter } from './Styled';
+import { MainFooter, NameRestaurant, Title, Subtotal, IconClock, DivInformation, DivIcon } from './Styled';
 import clock from '../../assets/clock.svg'
-
-const CardOrderInProgress = () => {
-    const history = useHistory();
+import maskMoney from '../../constants/maskMoney'
+const CardOrderInProgress = ({name, subtotal}) => {
     return (
-        <MainFooter>   
-         <img src={clock}/>
-         poo
+        <MainFooter> 
+            <DivIcon>
+         <IconClock src={clock}/>
+         </DivIcon>
+         <DivInformation>  
+              <Title>Pedido em andamento</Title>
+         <NameRestaurant>{name}</NameRestaurant>
+         <Subtotal>Sub Total: R${maskMoney(subtotal)}</Subtotal>
+         </DivInformation>
         </MainFooter>
     );
 }
