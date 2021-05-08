@@ -8,6 +8,7 @@ import CardRestaurant from "../components/CardRestaurant/CardRestaurant";
 import FooterMenu from "../components/FooterMenu/FooterMenu";
 import MenuCategory from "../components/MenuCategory/MenuCategory";
 import { goToHome } from "../Routes/Coordinators";
+import CardOrderInProgress from '../components/CardOrderInProgress/CardOrderInProgress';
 
 const HomePage = () => {
   // useProtectedPage()
@@ -87,7 +88,9 @@ const HomePage = () => {
               return <CardRestaurant restaurant={restaurant} />;
             })}
             {busca === "" && <FooterMenu currentPage="Home"/>}
+          
           </MainContainer>
+          <CardOrderInProgress/>
         </>
       );
     } else {
@@ -108,6 +111,7 @@ const HomePage = () => {
                 return <CardRestaurant restaurant={restaurant} />;
               })}
           </MainContainer>
+          <CardOrderInProgress/>
           <FooterMenu currentPage="Home"/>
         </>
       );

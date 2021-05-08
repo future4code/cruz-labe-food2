@@ -9,11 +9,12 @@ export const MainFooter = styled.div`
     position: fixed;
     bottom: 1px;
      border-top: 1px solid #B8B8B8;
-    background-color: #ffffff;
+    background-color: #e8222e;
     bottom: 0;
     align-self: center;
     left: 50%;
     transform: translateX(-50%);
+    height: 6.062rem;
 `
 export const IconButton = styled.div`
     width: 7.5rem;
