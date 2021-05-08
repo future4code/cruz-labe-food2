@@ -6,7 +6,7 @@
 <p align="center">
  <a href="#objetivo">Objetivo</a> •
  <a href="#Pré-Requisitos">Pré-Requisitos</a> • 
- <a href="#tecnologias e Bibliotecas">Tecnologias e Bibliotecas</a> • 
+ <a href="#tecnologias">Tecnologias</a> • 
  <a href="#aplicação">Aplicação</a> • 
  <a href="#contribuição">Contribuição</a> • 
 </p>
@@ -28,7 +28,7 @@
 Antes de começar, você precisa ter instalado em sua máquina: [Git](https://gitforwindows.org/), [Node.js](https://nodejs.org/en/), [Postman](https://www.postman.com/).
 Além disso, você precisa ter um bom editor de código, como [VSCode](https://code.visualstudio.com/).
 
-### Tecnologias e Bibliotecas
+### Tecnologias
 
 As seguintes tecnologias foram utilizadas no projeto:
 
