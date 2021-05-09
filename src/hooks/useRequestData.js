@@ -15,14 +15,14 @@ export const useRequestData = (path, initialState) => {
           },
         })
         .then((response) => {
-          setData(response.data)
+          setData(response.data);
         })
-        .catch((err) => console.log(err.message))
+        .catch((err) => console.log(err.message));
     }
-  }
+  };
 
   useEffect(() => {
-   getData()
+    getData();
   }, []);
 
   return [data, getData];

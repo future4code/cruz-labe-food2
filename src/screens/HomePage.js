@@ -11,7 +11,7 @@ import CardOrderInProgress from "../components/CardOrderInProgress/CardOrderInPr
 
 const HomePage = () => {
   useProtectedPage();
-  
+
   const [busca, setBusca] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);

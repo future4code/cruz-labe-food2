@@ -47,7 +47,7 @@ export const DivSelect = styled.div`
 
   display: flex;
   align-items: center;
-  position: relative; 
+  position: relative;
 `;
 
 export const Select = styled.select`
@@ -59,4 +59,5 @@ export const Select = styled.select`
   width: 100%;
   font-size: 1rem;
   letter-spacing: -0.39px;
+  cursor: pointer;
 `;

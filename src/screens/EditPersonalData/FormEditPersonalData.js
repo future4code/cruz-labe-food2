@@ -5,32 +5,32 @@ import Input from "../../components/Input/Input";
 import { updateProfile } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
-import validateEmail from '../../constants/validateEmail'
-import {useRequestData} from '../../hooks/useRequestData';
-import maskCPF from '../../constants/maskCPF' ;
-import Snackbar from '../../components/Snakbar/Snakbar'
-import {LinearProgressGlobal} from '../../GlobalStyle'
+import validateEmail from "../../constants/validateEmail";
+import { useRequestData } from "../../hooks/useRequestData";
+import maskCPF from "../../constants/maskCPF";
+import Snackbar from "../../components/Snakbar/Snakbar";
+import { LinearProgressGlobal } from "../../GlobalStyle";
 
 const FormEditPersonalData = () => {
   const [form, onChange, resetForm] = useForm({
     name: "",
     email: "",
-    cpf: ""
+    cpf: "",
   });
   const [error, setError] = useState({});
-  const [profile, setProfile] = useRequestData('profile', {})
-  const [snack, setSnack] = useState({text: "", sucess: false})
-  const [loading, setLoading] = useState(false)
+  const [profile, setProfile] = useRequestData("profile", {});
+  const [snack, setSnack] = useState({ text: "", sucess: false });
+  const [loading, setLoading] = useState(false);
 
-   useEffect(()=> {
-     if(Object.keys(profile).length > 0){
+  useEffect(() => {
+    if (Object.keys(profile).length > 0) {
       const profileUpdate = { ...profile.user };
       delete profileUpdate.id;
       delete profileUpdate.hasAddress;
       delete profileUpdate.address;
-             resetForm(profileUpdate)
-     }
-   }, [profile])
+      resetForm(profileUpdate);
+    }
+  }, [profile]);
 
   const history = useHistory();
   const handleClick = (event) => {
@@ -62,7 +62,7 @@ const FormEditPersonalData = () => {
 
   return (
     <div>
-      <Form onSubmit={handleClick} labelButton="Salvar" >
+      <Form onSubmit={handleClick} labelButton="Salvar">
         <Input
           label="Nome"
           placeholder="Nome e Sobrenome"
@@ -93,11 +93,11 @@ const FormEditPersonalData = () => {
           error={error["cpf"]}
           required={true}
         />
-        
-          {loading &&  <LinearProgressGlobal/>}
+
+        {loading && <LinearProgressGlobal />}
       </Form>
-      
-      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
+
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess} />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ export const useForm = (initialForm) => {
     if (!mask) {
       const { name, value } = event.target;
       setForm({ ...form, [name]: value });
-    }else{
+    } else {
       const { name, value } = event.target;
       setForm({ ...form, [name]: mask(value) });
     }

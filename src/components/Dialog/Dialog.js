@@ -42,7 +42,7 @@ export default function DialogCart({ open, setOpen, id, addItemCart }) {
   const handleQuantityProduct = (event) => {
     setQuantity(event.target.value);
   };
-  
+
   return (
     <React.Fragment>
       <DialogQuantity className="testando" open={open}>

@@ -1,15 +1,15 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
-import { Container } from './Styled';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import InputBase from "@material-ui/core/InputBase";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
+import { Container } from "./Styled";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '2px 4px',
-    display: 'flex',
-    alignItems: 'center',
+    padding: "2px 4px",
+    display: "flex",
+    alignItems: "center",
     width: 400,
   },
   input: {
@@ -25,19 +25,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedInputBase({updateBusca, value}) {
+export default function CustomizedInputBase({ updateBusca, value }) {
   const classes = useStyles();
 
   const handleInput = (event) => {
-    updateBusca(event.target.value)
-  }
+    updateBusca(event.target.value);
+  };
 
   return (
     <Container>
       <IconButton className={classes.iconButton} aria-label="menu">
         <SearchIcon />
       </IconButton>
-      <InputBase 
+      <InputBase
         value={value}
         onChange={handleInput}
         className={classes.input}

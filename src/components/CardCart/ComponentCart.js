@@ -23,7 +23,7 @@ import {
   DivRadio,
   Container,
   DivPadding,
-  ProductsContainer
+  ProductsContainer,
 } from "./Styled";
 import { useRequestData } from "../../hooks/useRequestData";
 import GlobalStateContext from "../../global/GlobalStateContext";
@@ -36,20 +36,22 @@ const ComponentCart = ({
   loading,
 }) => {
   const [profile] = useRequestData("profile", {});
-  const { cart, restaurantDetail, setRestaurantDetail } = useContext(GlobalStateContext);
-  
+  const { cart, restaurantDetail, setRestaurantDetail } = useContext(
+    GlobalStateContext
+  );
+
   const calTotalPrice = () => {
     const totalPrice = cart.reduce((acc, item) => {
       return (acc += item.price);
-    }, 0)
+    }, 0);
 
-    if (totalPrice > 0) return totalPrice + restaurantDetail.shipping 
-    return 0
-  }
+    if (totalPrice > 0) return totalPrice + restaurantDetail.shipping;
+    return 0;
+  };
 
   useEffect(() => {
-    if (cart.length === 0) setRestaurantDetail({})
-  },[cart, setRestaurantDetail])
+    if (cart.length === 0) setRestaurantDetail({});
+  }, [cart, setRestaurantDetail]);
 
   return (
     <Container>
@@ -66,7 +68,7 @@ const ComponentCart = ({
           <DeliveryTime>{restaurantDetail.deliveryTime} min</DeliveryTime>
         </>
       )}
-      
+
       <ProductsContainer>
         {cart.length > 0 ? (
           cart.map((product) => {
@@ -93,12 +95,12 @@ const ComponentCart = ({
             R$
             {restaurantDetail &&
             restaurantDetail.shipping &&
-              calTotalPrice() > 0 ? maskMoney(calTotalPrice()) : "00,00"}
+            calTotalPrice() > 0
+              ? maskMoney(calTotalPrice())
+              : "00,00"}
           </SubtotalPrice>
         </DivPrice>
-        <PaymentMethod>
-          Forma de pagamento
-        </PaymentMethod>
+        <PaymentMethod>Forma de pagamento</PaymentMethod>
         <PaymentOptions>
           <DivRadio>
             <RadiobuttonChecked
@@ -125,9 +127,11 @@ const ComponentCart = ({
           Cartão
         </PaymentOptions>
 
-        <DivConfirmButton onClick={ cart.length > 0 ? onClickConfim : 0}>
+        <DivConfirmButton onClick={cart.length > 0 ? onClickConfim : 0}>
           {loading && <LinearProgressGlobal />}
-          <ConfirmButton className={cart.length === 0 && 'disable'}>Confirma</ConfirmButton>
+          <ConfirmButton className={cart.length === 0 && "disable"}>
+            Confirma
+          </ConfirmButton>
         </DivConfirmButton>
       </DivPadding>
       <FooterMenu currentPage="Cart" />

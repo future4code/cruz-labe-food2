@@ -350,14 +350,14 @@ export const DivConfirmButton = styled.div`
   margin-top: 1.188rem;
 
   .disable {
-      background-color: rgba(232, 34, 46, 0.5);
+    background-color: rgba(232, 34, 46, 0.5);
   }
 `;
 
 export const ProductsContainer = styled.div`
-    width: 100%;
-    padding: 0 1rem;
-`
+  width: 100%;
+  padding: 0 1rem;
+`;
 
 export const ConfirmButton = styled.button`
   border-radius: 2px;

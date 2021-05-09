@@ -4,9 +4,9 @@ import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { updateAddress } from "../../services/API";
-import {useRequestData} from '../../hooks/useRequestData'
-import Snackbar from '../../components/Snakbar/Snakbar'
-import {LinearProgressGlobal} from '../../GlobalStyle'
+import { useRequestData } from "../../hooks/useRequestData";
+import Snackbar from "../../components/Snakbar/Snakbar";
+import { LinearProgressGlobal } from "../../GlobalStyle";
 
 const FormEditAddressPage = () => {
   const [form, onChange, resetForm] = useForm({
@@ -18,16 +18,16 @@ const FormEditAddressPage = () => {
     complement: "",
   });
   const [error, setError] = useState({});
-  const [address, setAddress] = useRequestData('profile/address', {})
-  const [snack, setSnack] = useState({text: "", sucess: false})
+  const [address, setAddress] = useRequestData("profile/address", {});
+  const [snack, setSnack] = useState({ text: "", sucess: false });
   const history = useHistory();
-  const [loading, setLoading] = useState(false)
-  
-  useEffect(()=> {
-    if(Object.keys(address).length > 0){
-      resetForm(address.address)
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (Object.keys(address).length > 0) {
+      resetForm(address.address);
     }
-  }, [address])
+  }, [address]);
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -39,7 +39,7 @@ const FormEditAddressPage = () => {
       currentError.number = "Número não foi inserido";
     } else if (form.number < 0) {
       currentError.number = "Número não pode ser negativo";
-    }else if(!Number.isInteger(Number(form.number))){
+    } else if (!Number.isInteger(Number(form.number))) {
       currentError.number = "Número não pode ser decimal";
     }
     if (form.neighbourhood === "") {
@@ -53,13 +53,13 @@ const FormEditAddressPage = () => {
     }
     setError({ ...currentError });
     if (Object.keys(currentError).length === 0) {
-      updateAddress(form, history, setSnack, setLoading)
+      updateAddress(form, history, setSnack, setLoading);
     }
   };
 
   return (
     <div>
-      <Form onSubmit={handleClick} labelButton="Salvar" >
+      <Form onSubmit={handleClick} labelButton="Salvar">
         <Input
           label="Logradouro"
           placeholder="Rua / Av"
@@ -120,9 +120,9 @@ const FormEditAddressPage = () => {
           error={error["state"]}
           required={true}
         />
-            {loading &&  <LinearProgressGlobal/>}
+        {loading && <LinearProgressGlobal />}
       </Form>
-      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess} />}
     </div>
   );
 };
