@@ -80,7 +80,7 @@ export const Address = styled.div`
 export const Line = styled.hr`
   width: calc(100% - 2rem);
   height: 0.063rem;
-  margin: 0.5rem 1rem 1rem;
+  margin: 0.5rem 1rem 0.438rem;
   border: solid 1px black;
 `
 export const History = styled.div`

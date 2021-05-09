@@ -1,5 +1,5 @@
 export default function maskDate(dt){
-    const date = new Date(dt); // converte para data
+    const date = new Date(dt);
     const nameMonth = [
         'janeiro', 
         'fevereiro', 

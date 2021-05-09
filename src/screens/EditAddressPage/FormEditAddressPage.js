@@ -59,7 +59,6 @@ const FormEditAddressPage = () => {
 
   return (
     <div>
-{console.log("Er", snack)}
       <Form onSubmit={handleClick} labelButton="Salvar" >
         <Input
           label="Logradouro"

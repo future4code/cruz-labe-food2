@@ -77,7 +77,6 @@ export const updateProfile = (body, history, setSnack, setLoading) => {
     setLoading(true)
     setSnack({text: ""})
     const user = JSON.parse(localStorage.getItem('user'))
-    console.log(`${BASE_URL}profile`)
     axios.put(`${BASE_URL}profile`, body, {
         headers: {
             auth: user.token

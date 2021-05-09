@@ -7,13 +7,14 @@ import { useParams } from "react-router-dom";
 import SectionDetails from "../components/SectionDetails/SectionDetails";
 import CardCart from "../components/CardCart/CardCart";
 import GlobalStateContext from "../global/GlobalStateContext";
+import useProtectedPage from '../hooks/useProtectedPage'
 
 const RestaurantPage = () => {
-  // useProtectedPage()
+  useProtectedPage()
   const params = useParams();  
   const { cart } = useContext(GlobalStateContext)
   const [product, setProduct] = useState([])
-  const [data, updateData] = useRequestData(
+  const [data] = useRequestData(
     `restaurants/${params.restaurantId}`,
     {}
   );
@@ -40,7 +41,6 @@ useEffect(()=>{
            return (productQuantity)
          }
         })
-        console.log("oi",productsCurrent)
         setProduct(productsCurrent)
   }
 

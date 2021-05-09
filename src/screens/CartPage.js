@@ -3,8 +3,10 @@ import GlobalStateContext from '../global/GlobalStateContext'
 import ComponentCart from '../components/CardCart/ComponentCart'
 import {placeOrder} from '../services/API'
 import Snackbar from '../components/Snakbar/Snakbar'
+import useProtectedPage from '../hooks/useProtectedPage'
 
 const CartPage = () => {
+    useProtectedPage();
     const { cart, setCart, restaurantDetail, setRestaurantDetail } = useContext(GlobalStateContext)
     const [paymentMethod, setPaymentMethod] = useState('creditcard')
     const [snack, setSnack] = useState({text: "", sucess: false})
@@ -12,7 +14,6 @@ const CartPage = () => {
   
     const onChangePaymentMethod = (value) => {    
         setPaymentMethod(value)
-        console.log(paymentMethod)
     }
     const onClickConfim = () =>{
         const products = cart.map((productCart) => {

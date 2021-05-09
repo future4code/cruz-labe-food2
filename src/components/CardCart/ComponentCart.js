@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import FooterMenu from "../FooterMenu/FooterMenu";
 import MenuHeader from "../MenuHeader/MenuHeader";
 import CardCart from "./CardCart";
@@ -23,6 +23,7 @@ import {
   DivRadio,
   Container,
   DivPadding,
+  ProductsContainer
 } from "./Styled";
 import { useRequestData } from "../../hooks/useRequestData";
 import GlobalStateContext from "../../global/GlobalStateContext";
@@ -35,18 +36,7 @@ const ComponentCart = ({
   loading,
 }) => {
   const [profile] = useRequestData("profile", {});
-  const { cart, restaurantDetail } = useContext(GlobalStateContext);
-  // const [priceToPay, setPriceToPay] = useState(0);
-
-  // let payment = "creditcard";
-
-  // useEffect(() => {
-  //   let currentTotal = 0;
-  //   cart.forEach((product) => {
-  //     currentTotal += product.price * product.quantity;
-  //   });
-  //   setPriceToPay();
-  // });
+  const { cart, restaurantDetail, setRestaurantDetail } = useContext(GlobalStateContext);
   
   const calTotalPrice = () => {
     const totalPrice = cart.reduce((acc, item) => {
@@ -56,6 +46,10 @@ const ComponentCart = ({
     if (totalPrice > 0) return totalPrice + restaurantDetail.shipping 
     return 0
   }
+
+  useEffect(() => {
+    if (cart.length === 0) setRestaurantDetail({})
+  },[cart, setRestaurantDetail])
 
   return (
     <Container>
@@ -72,14 +66,16 @@ const ComponentCart = ({
           <DeliveryTime>{restaurantDetail.deliveryTime} min</DeliveryTime>
         </>
       )}
-
-      {cart.length > 0 ? (
-        cart.map((product) => {
-          return <CardCart product={product} />;
-        })
-      ) : (
-        <EmptyText>Carrinho Vazio</EmptyText>
-      )}
+      
+      <ProductsContainer>
+        {cart.length > 0 ? (
+          cart.map((product) => {
+            return <CardCart product={product} />;
+          })
+        ) : (
+          <EmptyText>Carrinho Vazio</EmptyText>
+        )}
+      </ProductsContainer>
       <DivPadding>
         {restaurantDetail && (
           <Shipping>
@@ -101,8 +97,7 @@ const ComponentCart = ({
           </SubtotalPrice>
         </DivPrice>
         <PaymentMethod>
-          Pagamento
-          <hr />
+          Forma de pagamento
         </PaymentMethod>
         <PaymentOptions>
           <DivRadio>
@@ -130,9 +125,9 @@ const ComponentCart = ({
           Cartão
         </PaymentOptions>
 
-        <DivConfirmButton onClick={onClickConfim}>
+        <DivConfirmButton onClick={ cart.length > 0 ? onClickConfim : 0}>
           {loading && <LinearProgressGlobal />}
-          <ConfirmButton>Confirma</ConfirmButton>
+          <ConfirmButton className={cart.length === 0 && 'disable'}>Confirma</ConfirmButton>
         </DivConfirmButton>
       </DivPadding>
       <FooterMenu currentPage="Cart" />

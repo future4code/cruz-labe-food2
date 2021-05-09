@@ -16,13 +16,14 @@ import { useRequestData } from "../hooks/useRequestData";
 import { ReactComponent as Edit } from "../assets/edit.svg";
 import {goToEditAddress, goToEditProfile} from '../Routes/Coordinators'
 import FoodHistory from "../components/FoodHistory/FoodHistory";
+import useProtectedPage from '../hooks/useProtectedPage'
 
 const ProfilePage = () => {
+  useProtectedPage()
   const [ordersHistory, setOrdersHistory] = useRequestData("orders/history", {});
   const [profile, setProfile] = useRequestData("profile", {});
   
   const history = useHistory();
-    console.log("History", ordersHistory)
   return (
     <>
       <MenuHeader currentPageLabel={"Meu Perfil"} isGoBack={true} />

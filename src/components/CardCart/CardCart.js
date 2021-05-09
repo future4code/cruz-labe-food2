@@ -31,7 +31,6 @@ const CardCart = ({ product, restaurant }) => {
       !restaurantDetail.id ||
       restaurant.id !== restaurantDetail.id
     ) {
-      console.log(product);
       setRestaurantDetail(restaurant);
       setCart([{ ...product, quantity }]);
     } else {

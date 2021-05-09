@@ -2,7 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { goToCart, goToHome, goToProfile } from '../../Routes/Coordinators';
 import { IconButton, IconImage, MainFooter } from './Styled';
-// import {ReactComponent as Homepage} from '../../assets/homepage.svg'
 import homepage from '../../assets/homepage.svg'
 import shoppingCart from '../../assets/shopping-cart.svg'
 import avatar from '../../assets/avatar.svg'

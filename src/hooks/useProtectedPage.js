@@ -7,7 +7,6 @@ const useProtectedPage = () => {
 
     useLayoutEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'))
-        console.log("d", user)
         if (!user) {
             goToLogin(history)
         }
