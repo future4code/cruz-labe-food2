@@ -7,21 +7,22 @@ export const useRequestData = (path, initialState) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const getData = () => {
-    axios
-      .get(`${BASE_URL}${path}`, {
-        headers: {
-          auth: user.token,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setData(response.data)
-      })
-      .catch((err) => console.log(err.message))
-  }
+    if (user) {
+      axios
+        .get(`${BASE_URL}${path}`, {
+          headers: {
+            auth: user.token,
+          },
+        })
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch((err) => console.log(err.message));
+    }
+  };
 
   useEffect(() => {
-   getData()
+    getData();
   }, []);
 
   return [data, getData];

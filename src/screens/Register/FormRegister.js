@@ -6,9 +6,9 @@ import { signup } from "../../services/API";
 import { useHistory } from "react-router-dom";
 import validateCPF from "../../constants/validateCPF";
 import validateEmail from "../../constants/validateEmail";
-import maskCPF from '../../constants/maskCPF' ;
-import Snackbar from '../../components/Snakbar/Snakbar'
-import {LinearProgressGlobal} from '../../GlobalStyle'
+import maskCPF from "../../constants/maskCPF";
+import Snackbar from "../../components/Snakbar/Snakbar";
+import { LinearProgressGlobal } from "../../GlobalStyle";
 
 const FormRegister = () => {
   const [form, onChange, resetForm] = useForm({
@@ -19,8 +19,8 @@ const FormRegister = () => {
     confirmPassword: "",
   });
   const [error, setError] = useState({});
-  const [snack, setSnack] = useState({text: "", sucess: false})
-  const [loading, setLoading] = useState(false)
+  const [snack, setSnack] = useState({ text: "", sucess: false });
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   const handleClick = (event) => {
@@ -34,8 +34,7 @@ const FormRegister = () => {
 
     if (form.email === "") {
       currentError.email = "E-mail não foi inserido";
-    }  
-    else if(!validateEmail(form.email)){
+    } else if (!validateEmail(form.email)) {
       currentError.email = "E-mail inválido";
     }
 
@@ -62,8 +61,6 @@ const FormRegister = () => {
       signup(body, history, setSnack, setLoading);
     }
   };
-
-
 
   return (
     <div>
@@ -92,7 +89,7 @@ const FormRegister = () => {
           label="CPF"
           placeholder="000.000.000-00"
           value={form.cpf}
-          onChange={(e)=> onChange(e, maskCPF)}
+          onChange={(e) => onChange(e, maskCPF)}
           type="text"
           name="cpf"
           error={error["cpf"]}
@@ -118,9 +115,9 @@ const FormRegister = () => {
           error={error["confirmPassword"]}
           required={true}
         />
-          {loading &&  <LinearProgressGlobal/>}
+        {loading && <LinearProgressGlobal />}
       </Form>
-      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess} />}
     </div>
   );
 };

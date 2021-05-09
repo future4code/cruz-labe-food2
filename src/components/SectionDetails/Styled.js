@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const DetailsContainer = styled.div`
-    width: 100%;
-`
+  width: 100%;
+`;
 
 export const Title = styled.h3`
   font-family: Roboto;
@@ -14,4 +14,4 @@ export const Title = styled.h3`
   letter-spacing: -0.39px;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid black;
-`
+`;

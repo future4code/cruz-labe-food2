@@ -11,14 +11,15 @@ import CardOrderInProgress from "../components/CardOrderInProgress/CardOrderInPr
 
 const HomePage = () => {
   useProtectedPage();
-  const [restaurants] = useRequestData("restaurants", {});
+
   const [busca, setBusca] = useState("");
   const [selectCategory, setSelectCategory] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [restaurants] = useRequestData("restaurants", {});
   const [order, updateOrder] = useRequestData("active-order", {});
 
   useEffect(() => {
-    if (order.order !== undefined) {
+    if (order.order !== undefined && order.order !== null) {
       setInterval(() => {
         updateOrder();
       }, order.order.expiresAt - order.order.createdAt);

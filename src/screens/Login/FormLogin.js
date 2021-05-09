@@ -5,13 +5,14 @@ import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { login } from "../../services/API";
 import validateEmail from "../../constants/validateEmail";
-import Snackbar from '../../components/Snakbar/Snakbar'
-import {LinearProgressGlobal} from '../../GlobalStyle'
+import Snackbar from "../../components/Snakbar/Snakbar";
+import { LinearProgressGlobal } from "../../GlobalStyle";
+
 const FormLogin = () => {
   const [form, onChange, resetForm] = useForm({ email: "", password: "" });
   const [error, setError] = useState({});
-  const [snack, setSnack] = useState({text: "", sucess: false})
-  const [loading, setLoading] = useState(false)
+  const [snack, setSnack] = useState({ text: "", sucess: false });
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   const handleClick = (event) => {
@@ -21,8 +22,7 @@ const FormLogin = () => {
 
     if (form.email === "") {
       currentError.email = "E-mail não foi inserido";
-    }
-    else if(!validateEmail(form.email)){
+    } else if (!validateEmail(form.email)) {
       currentError.email = "E-mail inválido";
     }
     if (form.password === "") {
@@ -40,7 +40,6 @@ const FormLogin = () => {
   return (
     <div>
       <Form onSubmit={handleClick} labelButton="Entrar" title="Entrar">
-      
         <Input
           label="Email"
           placeholder="email@email.com"
@@ -61,10 +60,9 @@ const FormLogin = () => {
           required={true}
           error={error["password"]}
         />
-        {loading &&  <LinearProgressGlobal/>}
-        
+        {loading && <LinearProgressGlobal />}
       </Form>
-      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
+      {snack.text && <Snackbar text={snack.text} sucess={snack.sucess} />}
     </div>
   );
 };

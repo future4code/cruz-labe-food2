@@ -4,8 +4,8 @@ import Input from "../../components/Input/Input";
 import Form from "../../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { addAddress } from "../../services/API";
-import Snackbar from '../../components/Snakbar/Snakbar'
-import {LinearProgressGlobal} from '../../GlobalStyle'
+import Snackbar from "../../components/Snakbar/Snakbar";
+import { LinearProgressGlobal } from "../../GlobalStyle";
 
 const FormRegisterAddress = () => {
   const [form, onChange, resetForm] = useForm({
@@ -19,8 +19,8 @@ const FormRegisterAddress = () => {
 
   const [error, setError] = useState({});
   const history = useHistory();
-  const [snack, setSnack] = useState({text: "", sucess: false})
-  const [loading, setLoading] = useState(false)
+  const [snack, setSnack] = useState({ text: "", sucess: false });
+  const [loading, setLoading] = useState(false);
   const handleClick = (event) => {
     event.preventDefault();
     const currentError = {};
@@ -31,7 +31,7 @@ const FormRegisterAddress = () => {
       currentError.number = "Número não foi inserido";
     } else if (form.number < 0) {
       currentError.number = "Número não pode ser negativo";
-    }else if(!Number.isInteger(Number(form.number))){
+    } else if (!Number.isInteger(Number(form.number))) {
       currentError.number = "Número não pode ser decimal";
     }
     if (form.neighbourhood === "") {
@@ -111,9 +111,9 @@ const FormRegisterAddress = () => {
           name="state"
           error={error["state"]}
           required={true}
-        /> 
-        {snack.text && <Snackbar text={snack.text} sucess={snack.sucess}/>}
-        {loading &&  <LinearProgressGlobal/>}
+        />
+        {snack.text && <Snackbar text={snack.text} sucess={snack.sucess} />}
+        {loading && <LinearProgressGlobal />}
       </Form>
     </div>
   );
