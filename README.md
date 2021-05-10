@@ -1,6 +1,4 @@
-<p align="center">
-<img src="https://scene.zeplin.io/project/5dd5ab8e5fb2a0060f81698f/screen/5dd5abb8053268bc95db6469" />
-</p>
+<p align="center">LABE-FOODS2</p>
 
 <h3 align="center">TABELA DE CONTEÚDOS
 <p align="center">
@@ -42,7 +40,7 @@ As seguintes tecnologias foram utilizadas no projeto:
 
 ### Aplicação
 
--Link Surge: 
+-Link Surge: http://cruz-labefoods2.surge.sh/
 
 -Link da API: https://documenter.getpostman.com/view/7549981/SWTEdGtT
 
