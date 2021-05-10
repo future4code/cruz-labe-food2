@@ -7,6 +7,7 @@
  <a href="#tecnologias">Tecnologias</a> • 
  <a href="#aplicação">Aplicação</a> • 
  <a href="#contribuição">Contribuição</a> • 
+ <a href="#Screenshot">Screenshot</a> • 
 </p>
 </h3>
   
@@ -56,5 +57,9 @@ Este projeto contou com a contribuição de:
  <li><a href="https://www.linkedin.com/in/janayllafirmino/">Janaylla Firmino</a></li>
  <li><a href="https://www.linkedin.com/in/jose-isaac/">José Isaac Barreiro Campos</a></li>
  <li><a href="https://www.linkedin.com/in/kelvia-kelline/">Kelvia Kelline dos Santos Sousa</a></li>
- <li><a href="">Milena Ribeiro da Silva</a></li>
+ <li><a href="https://www.linkedin.com/in/milena-ribeiro-269251184">Milena Ribeiro da Silva</a></li>
 </ul>
+
+### Screenshot
+
+<img src='./src/assets/labefood.jpg' alt='Screenshots do labe food'/>
