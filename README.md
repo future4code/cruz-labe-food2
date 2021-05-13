@@ -1,68 +1,65 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">LABE-FOODS2</p>
 
-## Available Scripts
+<h3 align="center">TABELA DE CONTEÚDOS
+<p align="center">
+ <a href="#objetivo">Objetivo</a> •
+ <a href="#Pré-Requisitos">Pré-Requisitos</a> • 
+ <a href="#tecnologias">Tecnologias</a> • 
+ <a href="#aplicação">Aplicação</a> • 
+ <a href="#contribuição">Contribuição</a> • 
+ <a href="#Screenshot">Screenshot</a> • 
+</p>
+</h3>
+  
+<hr>
 
-In the project directory, you can run:
+<h3 align="center">PROJETO EM FASE FINAL</h2>
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h1 align="center">iFuture</h1>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Objetivo
 
-### `npm test`
+<p>Este é o projeto final do módulo de Frontend do curso de Web Fullstack da LABENU. Nosso objetivo é desenvolver um aplicativo de fast-food, com todas as funções necessárias para que o mesmo seja capaz de cadastrar e reconhecer um usuário logado, checar o seu histórico de pedidos e o mais importante, conseguir efetuar a compra da refeição e acompanhar o tempo do pedido em questão.</p>
+  
+### Pré-requisitos
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Antes de começar, você precisa ter instalado em sua máquina: [Git](https://gitforwindows.org/), [Node.js](https://nodejs.org/en/), [Postman](https://www.postman.com/).
+Além disso, você precisa ter um bom editor de código, como [VSCode](https://code.visualstudio.com/).
 
-### `npm run build`
+### Tecnologias
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+As seguintes tecnologias foram utilizadas no projeto:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [Material-UI](https://material-ui.com/pt/)
+- [Axios](https://www.npmjs.com/package/axios)
+- [styled-components](https://styled-components.com/)
+- [React-router-dom](https://reactrouter.com/web/guides/quick-start)
+- [Zeplin](https://zeplin.io/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Aplicação
 
-### `npm run eject`
+-Link Surge: http://cruz-labefoods2.surge.sh/
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+-Link da API: https://documenter.getpostman.com/view/7549981/SWTEdGtT
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Contribuição
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Este projeto contou com a contribuição de:
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<ul>
+ <li><a href="https://www.linkedin.com/in/andr%C3%A9-muniz-26559510a/">André Muniz</a></li>
+ <li><a href="https://www.linkedin.com/in/igor-meira-55422a1b5/">Igor Meira do Nascimento Silva</a> </li>
+ <li><a href="https://www.linkedin.com/in/janayllafirmino/">Janaylla Firmino</a></li>
+ <li><a href="https://www.linkedin.com/in/jose-isaac/">José Isaac Barreiro Campos</a></li>
+ <li><a href="https://www.linkedin.com/in/kelvia-kelline/">Kelvia Kelline dos Santos Sousa</a></li>
+ <li><a href="https://www.linkedin.com/in/milena-ribeiro-269251184">Milena Ribeiro da Silva</a></li>
+</ul>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Screenshot
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<img src='./src/assets/labefood.jpg' alt='Screenshots do labe food'/>
